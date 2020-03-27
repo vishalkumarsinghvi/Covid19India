@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white"
+  android:paddingBottom="?attr/actionBarSize"
+  tools:context=".view.fragment.covid19.Covid19Fragment">
+  <HorizontalScrollView
+    android:id="@+id/horizontalScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:fillViewport="true"
+    android:measureAllChildren="false"
+    android:padding="2dp"
+    android:scrollbars="none"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.chip.ChipGroup
+      android:id="@+id/chipGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:checkedChip="@+id/chip_state_wise_data"
+      app:selectionRequired="true"
+      app:singleLine="true"
+      app:singleSelection="true">
+
+      <com.google.android.material.chip.Chip
+        android:id="@+id/chip_state_wise_data"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/statewise_data"
+        android:textColor="@android:color/white"
+        app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+      <com.google.android.material.chip.Chip
+        android:id="@+id/chip_raw_data"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/row_data"
+        android:textColor="@android:color/white"
+        app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+      <com.google.android.material.chip.Chip
+        android:id="@+id/chip_city_wise_data"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/city_wise_data"
+        android:textColor="@android:color/white"
+        app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+      <com.google.android.material.chip.Chip
+        android:id="@+id/chip_data"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/data"
+        android:textColor="@android:color/white"
+        app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+    </com.google.android.material.chip.ChipGroup>
+  </HorizontalScrollView>
+
+  <androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="60dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="25dp"
+    app:layout_constraintBottom_toTopOf="@+id/tv_header"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+  <TextView
+    android:id="@+id/tv_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#59201AA2"
+    android:gravity="center"
+    android:text="@string/app_name"
+    android:textColor="#DE201AA2"
+    android:textSize="16sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

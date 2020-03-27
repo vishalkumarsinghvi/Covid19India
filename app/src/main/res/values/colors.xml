@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#000000</color>
+  <color name="colorPrimaryDark">#000000</color>
+  <color name="colorAccent">#000000</color>
+  <color name="chip_selected">#1CB0F3</color>
+  <color name="chip_unselected">#E2E2E2</color>
+</resources>

@@ -1,0 +1,46 @@
+<resources>
+  <string name="app_name">Covid19 India</string>
+  <string name="title_activity_home">HomeActivity</string>
+  <string name="title_contact_us">Radio</string>
+  <string name="title_precautions">Precautions</string>
+  <string name="title_covid_19">Covid19</string>
+  <string name="splashlogo">splashLogo</string>
+  <string name="background_mode">Background Mode</string>
+  <string name="iv_back">iv_back</string>
+  <string name="live_station_name">Live Station name</string>
+  <string name="radio_icon">radio_icon</string>
+  <string name="play">PLAY</string>
+  <string name="stop">STOP</string>
+
+  <string name="row_data">Patient Data</string>
+  <string name="city_wise_data">City Data</string>
+  <string name="statewise_data">State Data</string>
+  <string name="data">Data</string>
+  <string name="blank">-</string>
+  <string name="last_update">Last update</string>
+  <string name="confirmed">Confirmed</string>
+  <string name="recovered">Recovered</string>
+  <string name="deaths">deaths</string>
+  <string name="active">Active</string>
+  <string name="desc">description</string>
+  <string name="number">Number</string>
+  <string name="state_patient_number">State Patient Number</string>
+  <string name="gender">Gender</string>
+  <string name="age">Age</string>
+  <string name="nationality">Nationality</string>
+  <string name="state">State</string>
+  <string name="district_city">DISTRICT/CITY</string>
+  <string name="status">Status</string>
+  <string name="reported_on">Reported On</string>
+  <string name="notes">Notes</string>
+  <string name="sources">Sources</string>
+  <string name="spread_trends">SPREAD TRENDS</string>
+  <string name="cumulative">Cumulative</string>
+  <string name="daily">Daily</string>
+  <string name="pid">PId</string>
+  <string name="current">Current</string>
+  <string name="city">City</string>
+  <string name="rcvrd">RCVRD</string>
+  <string name="thank_you_so_much_covid19india_org_n_i_am_attaching_my_linkedin_profile_https_www_linkedin_com_in_vishalkumarsinghvi">Thank you so much Covid19India.org \n Contact us:- https://www.linkedin.com/in/vishalkumarsinghvi</string>
+  <string name="district">DISTRICT</string>
+</resources>

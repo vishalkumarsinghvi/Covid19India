@@ -1,0 +1,42 @@
+package com.android.covid19india.model.Covid19;
+
+import com.android.covid19india.model.Covid19.Data.Data;
+import com.android.covid19india.model.Covid19.Factoids.FactoidsModel;
+import com.android.covid19india.model.Covid19.RawData.RawData;
+import com.android.covid19india.model.Covid19.TravelHistory.TravelHistory;
+import com.android.covid19india.retrofit.RetrofitClientInstance;
+import com.google.gson.JsonObject;
+import retrofit2.Call;
+import retrofit2.http.GET;
+
+public class Covid19Service {
+
+  private static final Covid19Api covid19Api = RetrofitClientInstance.getRetrofitCovid19()
+      .create(Covid19Api.class);
+
+  public Covid19Service() {
+  }
+
+  public static Covid19Api getInstanceCovid19() {
+    return covid19Api;
+  }
+
+  public interface Covid19Api {
+
+    @GET("raw_data.json")
+    Call<RawData> getRawData();
+
+    @GET("travel_history.json")
+    Call<TravelHistory> getTravelHistory();
+
+    @GET("data.json")
+    Call<Data> getData();
+
+    @GET("state_district_wise.json")
+    Call<JsonObject> getStateDistrictWise();
+
+    @GET("website_data.json")
+    Call<FactoidsModel> getFactoidsList();
+  }
+
+}

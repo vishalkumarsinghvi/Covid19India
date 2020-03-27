@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/mobile_navigation"
+  app:startDestination="@+id/navigation_covid_19">
+  <fragment
+    android:id="@+id/navigation_covid_19"
+    android:name="com.android.covid19india.view.fragment.covid19.Covid19Fragment"
+    android:label="@string/title_covid_19"
+    tools:layout="@layout/fragment_covid_19" />
+<!--  <fragment-->
+<!--    android:id="@+id/navigation_precautions"-->
+<!--    android:name="com.android.covid19india.view.fragment.precaution.PrecautionsFragment"-->
+<!--    android:label="@string/title_precautions"-->
+<!--    tools:layout="@layout/fragment_precautions" />-->
+
+<!--  <fragment-->
+<!--    android:id="@+id/navigation_radio"-->
+<!--    android:name="com.android.covid19india.view.fragment.contact.ContactFragment"-->
+<!--    android:label="@string/title_contact_us"-->
+<!--    tools:layout="@layout/fragment_contacts" />-->
+
+</navigation>
