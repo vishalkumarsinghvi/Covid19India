@@ -1,13 +1,18 @@
 package com.vishal.covid19india.model.Covid19.Factoids;
 
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 import org.jetbrains.annotations.NotNull;
 
-public class Factoids {
+public class Factoids implements Serializable {
 
+  @SerializedName("numberoftimes")
   private String numberoftimes;
 
+  @SerializedName("banner")
   private String banner;
 
+  @SerializedName("id")
   private String id;
 
   public String getNumberoftimes() {

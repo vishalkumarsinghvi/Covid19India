@@ -1,14 +1,17 @@
 package com.vishal.covid19india.model.Covid19.Factoids;
 
+import com.google.gson.annotations.SerializedName;
 import com.vishal.covid19india.model.Covid19.Covid19Service;
+import java.io.Serializable;
 import java.util.ArrayList;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FactoidsModel {
+public class FactoidsModel implements Serializable {
 
+  @SerializedName("factoids")
   private ArrayList<Factoids> factoids;
 
   public static void getFactoidsList(Callback<FactoidsModel> callback) {
