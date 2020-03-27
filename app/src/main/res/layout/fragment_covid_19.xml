@@ -6,7 +6,7 @@
   android:layout_height="match_parent"
   android:background="@android:color/white"
   android:paddingBottom="?attr/actionBarSize"
-  tools:context=".view.fragment.covid19.Covid19Fragment">
+  tools:context="com.vishal.covid19india.view.fragment.covid19.Covid19Fragment">
   <HorizontalScrollView
     android:id="@+id/horizontalScrollView"
     android:layout_width="fill_parent"

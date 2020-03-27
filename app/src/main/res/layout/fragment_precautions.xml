@@ -4,7 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:paddingBottom="?attr/actionBarSize"
-  tools:context=".view.fragment.precaution.PrecautionsFragment">
+  tools:context="com.vishal.covid19india.view.fragment.precaution.PrecautionsFragment">
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
