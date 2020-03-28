@@ -1,132 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="com.vishal.covid19india.view.fragment.covid19.child.DataFragment">
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-      android:id="@+id/tv_title"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
-      android:text="@string/spread_trends"
-      android:textColor="@android:color/black"
-      android:textSize="30sp"
-      android:textStyle="bold"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-    <com.google.android.material.chip.ChipGroup
-      android:id="@+id/chipGroup_data"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      app:checkedChip="@+id/chip_Cumulative_wise_data"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tv_title"
-      app:selectionRequired="true"
-      app:singleLine="true"
-      app:singleSelection="true">
+    android:layout_height="wrap_content">
 
-      <com.google.android.material.chip.Chip
-        android:id="@+id/chip_Cumulative_wise_data"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/spread_trends"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+      <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/cumulative"
-        android:textColor="@android:color/white"
-        app:chipBackgroundColor="@color/bg_chip_state_list" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:checkedChip="@+id/chip_Cumulative_wise_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:selectionRequired="true"
+        app:singleLine="true"
+        app:singleSelection="true">
 
-      <com.google.android.material.chip.Chip
-        android:id="@+id/chip_daily_data"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+          android:id="@+id/chip_Cumulative_wise_data"
+          style="@style/Widget.MaterialComponents.Chip.Choice"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@android:color/black"
+          android:clickable="true"
+          android:focusable="true"
+          android:text="@string/cumulative"
+          android:textColor="@android:color/white"
+          app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+        <com.google.android.material.chip.Chip
+          android:id="@+id/chip_daily_data"
+          style="@style/Widget.MaterialComponents.Chip.Choice"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:clickable="true"
+          android:focusable="true"
+          android:text="@string/daily"
+          android:textColor="@android:color/white"
+          app:chipBackgroundColor="@color/bg_chip_state_list" />
+      </com.google.android.material.chip.ChipGroup>
+      <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup_data">
+        <im.dacer.androidcharts.LineView
+          android:id="@+id/line_view"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent" />
+      </HorizontalScrollView>
+
+      <TextView
+        android:id="@+id/tv_thank_you"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:autoLink="web"
+        android:gravity="center"
+        android:text="@string/thank_you_so_much_covid19india_org_n_i_am_attaching_my_linkedin_profile_https_www_linkedin_com_in_vishalkumarsinghvi"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recovered_data" />
+      <TextView
+        android:id="@+id/tv_confirmed_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/daily"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="@string/confirmed"
         android:textColor="@android:color/white"
-        app:chipBackgroundColor="@color/bg_chip_state_list" />
-    </com.google.android.material.chip.ChipGroup>
-    <HorizontalScrollView
-      android:id="@+id/horizontalScrollView2"
-      android:layout_width="match_parent"
-      android:layout_height="300dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/chipGroup_data">
-      <im.dacer.androidcharts.LineView
-        android:id="@+id/line_view"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
+        app:layout_constraintEnd_toStartOf="@+id/tv_recovered_data"
+        app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
+      <TextView
+        android:id="@+id/tv_recovered_data"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-    </HorizontalScrollView>
-
-    <TextView
-      android:id="@+id/tv_thank_you"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="8dp"
-      android:autoLink="web"
-      android:gravity="center"
-      android:text="@string/thank_you_so_much_covid19india_org_n_i_am_attaching_my_linkedin_profile_https_www_linkedin_com_in_vishalkumarsinghvi"
-      android:textColor="@android:color/black"
-      android:textSize="16sp"
-      android:textStyle="bold"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tv_recovered_data" />
-    <TextView
-      android:id="@+id/tv_confirmed_data"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="32dp"
-      android:gravity="center"
-      android:padding="2dp"
-      android:textColor="@android:color/white"
-      android:text="@string/confirmed"
-      app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
-      app:layout_constraintEnd_toStartOf="@+id/tv_recovered_data"
-      app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
-    <TextView
-      android:id="@+id/tv_recovered_data"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="24dp"
-      android:gravity="center"
-      android:padding="2dp"
-      android:textColor="@android:color/white"
-      android:text="@string/recovered"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
-    <TextView
-      android:id="@+id/tv_deaths_data"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="32dp"
-      android:gravity="center"
-      android:padding="2dp"
-      android:textColor="@android:color/white"
-      android:text="@string/deaths"
-      app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
-      app:layout_constraintStart_toEndOf="@+id/tv_recovered_data"
-      app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
-
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="@string/recovered"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+      <TextView
+        android:id="@+id/tv_deaths_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="@string/deaths"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
+        app:layout_constraintStart_toEndOf="@+id/tv_recovered_data"
+        app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </FrameLayout>
+</ScrollView>

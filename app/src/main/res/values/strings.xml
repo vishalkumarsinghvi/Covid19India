@@ -20,7 +20,7 @@
   <string name="last_update">Last update</string>
   <string name="confirmed">Confirmed</string>
   <string name="recovered">Recovered</string>
-  <string name="deaths">deaths</string>
+  <string name="deaths">DECEASED</string>
   <string name="active">Active</string>
   <string name="desc">description</string>
   <string name="number">Number</string>
@@ -41,6 +41,9 @@
   <string name="current">Current</string>
   <string name="city">City</string>
   <string name="rcvrd">RCVRD</string>
+  <string name="actv">ACTV</string>
+  <string name="cnfmd">CNFMD</string>
+  <string name="dcsd">DCSD</string>
   <string name="thank_you_so_much_covid19india_org_n_i_am_attaching_my_linkedin_profile_https_www_linkedin_com_in_vishalkumarsinghvi">Thank you so much Covid19India.org \n Contact us:- https://www.linkedin.com/in/vishalkumarsinghvi</string>
   <string name="district">DISTRICT</string>
 </resources>

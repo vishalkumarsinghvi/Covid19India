@@ -1,106 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="com.vishal.covid19india.view.fragment.covid19.child.CityWiseFragment">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <LinearLayout
+    android:id="@+id/ll_city_wise_data"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-      android:id="@+id/tv_latest_updated"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="8dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginRight="8dp"
-      android:gravity="center"
-      android:text="@string/last_update"
-      android:textColor="@android:color/black"
-      android:textSize="16sp"
-      android:visibility="gone"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="horizontal"
+    android:weightSum="3">
     <TextView
       android:id="@+id/tv_state"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="8dp"
-      android:gravity="start|center_vertical"
+      android:layout_margin="1dp"
+      android:layout_weight="1"
+      android:background="@android:color/darker_gray"
+      android:gravity="center"
       android:text="@string/state"
       android:textColor="@android:color/black"
-      android:textSize="14sp"
-      app:layout_constraintLeft_toLeftOf="@id/tv_latest_updated"
-      app:layout_constraintTop_toBottomOf="@id/tv_latest_updated" />
+      android:textSize="14sp" />
 
 
     <TextView
       android:id="@+id/tv_city"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="54dp"
-      android:gravity="start|center_vertical"
+      android:layout_margin="1dp"
+      android:layout_weight="1"
+      android:background="@android:color/darker_gray"
+      android:gravity="center"
       android:text="@string/district"
       android:textColor="@android:color/black"
-      android:textSize="14sp"
-      app:layout_constraintBottom_toBottomOf="@+id/tv_state"
-      app:layout_constraintStart_toEndOf="@+id/tv_state"
-      app:layout_constraintTop_toTopOf="@+id/tv_state" />
+      android:textSize="14sp" />
     <TextView
       android:id="@+id/tv_confirmed"
-      android:layout_width="wrap_content"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginStart="32dp"
-      android:gravity="start|center_vertical"
+      android:layout_margin="1dp"
+      android:layout_weight="1"
+      android:background="@android:color/darker_gray"
+      android:gravity="center"
       android:text="@string/confirmed"
       android:textColor="@android:color/black"
-      android:textSize="14sp"
-      app:layout_constraintBottom_toBottomOf="@+id/tv_city"
-      app:layout_constraintStart_toEndOf="@+id/tv_city"
-      app:layout_constraintTop_toTopOf="@+id/tv_city" />
-    <TextView
-      android:id="@+id/tv_deaths"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="24dp"
-      android:gravity="start|center_vertical"
-      android:text="@string/deaths"
-      android:textColor="@android:color/black"
-      android:textSize="14sp"
-      android:visibility="gone"
-      app:layout_constraintBottom_toBottomOf="@id/tv_confirmed"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintStart_toEndOf="@id/tv_confirmed"
-      app:layout_constraintTop_toTopOf="@id/tv_confirmed" />
-    <TextView
-      android:id="@+id/tv_active"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="16dp"
-      android:gravity="start|center_vertical"
-      android:text="@string/active"
-      android:textColor="@android:color/black"
-      android:textSize="14sp"
-      android:visibility="gone"
-      app:layout_constraintBottom_toBottomOf="@id/tv_deaths"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintStart_toEndOf="@id/tv_deaths"
-      app:layout_constraintTop_toTopOf="@id/tv_deaths" />
+      android:textSize="14sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/rv_city_wise_data"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginLeft="8dp"
-      android:layout_marginTop="30dp"
-      android:layout_marginRight="8dp"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/tv_city" />
-  </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+  </LinearLayout>
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rv_city_wise_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/ll_city_wise_data"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp" />
+</RelativeLayout>
