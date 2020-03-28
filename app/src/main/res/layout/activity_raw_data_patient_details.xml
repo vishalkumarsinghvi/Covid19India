@@ -1,149 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
   tools:context="com.vishal.covid19india.view.activity.RawDataPatientDetailsActivity">
 
-  <ImageView
-    android:id="@+id/iv_back_raw_data"
-    android:layout_width="25dp"
-    android:layout_height="25dp"
-    android:layout_marginStart="16dp"
-    android:contentDescription="@string/desc"
-    android:layout_marginTop="16dp"
-    android:background="@drawable/ic_back_black"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-  <ImageView
-    android:id="@+id/iv_patient_raw_data"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_marginTop="80dp"
-    android:contentDescription="@string/desc"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-  <TextView
-    android:id="@+id/tv_patient_number_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    android:ems="3"
-    android:gravity="center"
-    android:maxLines="1"
-    android:text="@string/number"
-    android:textColor="@android:color/black"
-    android:textSize="14sp"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/iv_patient_raw_data" />
-  <TextView
-    android:id="@+id/tv_state_patient_number_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="32dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/state_patient_number"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/tv_patient_number_raw_data" />
-  <TextView
-    android:id="@+id/tv_gender_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/gender"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/tv_state_patient_number_raw_data" />
-  <TextView
-    android:id="@+id/tv_age_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/age"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_gender_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_gender_raw_data" />
-  <TextView
-    android:id="@+id/tv_nationality_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/nationality"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_age_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_age_raw_data" />
-  <TextView
-    android:id="@+id/tv_state_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/state"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_nationality_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_nationality_raw_data" />
-  <TextView
-    android:id="@+id/tv_city_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/district_city"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_state_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_state_raw_data" />
-  <TextView
-    android:id="@+id/tv_status_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/status"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_city_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_city_raw_data" />
-  <TextView
-    android:id="@+id/tv_reported_on_raw_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="8dp"
-    android:text="@string/reported_on"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_status_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_status_raw_data" />
-  <TextView
-    android:id="@+id/tv_notes_raw_data"
+  <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="24dp"
-    android:text="@string/notes"
-    android:textColor="@android:color/black"
-    app:layout_constraintStart_toStartOf="@id/tv_reported_on_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_reported_on_raw_data" />
+    android:layout_height="256dp"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-  <TextView
-    android:id="@+id/tv_source_one_raw_data"
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+      android:id="@+id/collapsing_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fitsSystemWindows="true"
+      app:contentScrim="?attr/colorPrimary"
+      app:expandedTitleMarginStart="24dp"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+      app:title="@string/app_name">
+
+      <ImageView
+        android:id="@+id/header"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        app:layout_collapseMode="parallax" />
+
+      <androidx.appcompat.widget.Toolbar
+        android:id="@+id/anim_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+  </com.google.android.material.appbar.AppBarLayout>
+  <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="24dp"
-    android:text="@string/sources"
-    android:textColor="@android:color/black"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="@id/tv_notes_raw_data"
-    app:layout_constraintTop_toBottomOf="@id/tv_notes_raw_data" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:weightSum="10">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_state_patient_number_raw_data"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:text="@string/state_patient_number"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_gender_raw_data"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/gender"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_age_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/age"
+          android:textColor="@android:color/black" />
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_nationality_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/nationality"
+          android:textColor="@android:color/black" />
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_state_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/state"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_city_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/district_city"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_status_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/status"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_reported_on_raw_data"
+          android:layout_width="wrap_content"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/reported_on"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_notes_raw_data"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/notes"
+          android:textColor="@android:color/black" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_source_one_raw_data"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="8dp"
+          android:layout_weight="1"
+          android:text="@string/sources"
+          android:textColor="@android:color/black"
+          app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:alpha="0.12"
+          android:background="@android:color/black" />
+      </LinearLayout>
+
+
+    </LinearLayout>
+  </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

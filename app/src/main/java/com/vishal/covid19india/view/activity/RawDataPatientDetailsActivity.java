@@ -3,17 +3,19 @@ package com.vishal.covid19india.view.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.util.Linkify;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+import java.util.Objects;
 
-public class RawDataPatientDetailsActivity extends AppCompatActivity implements
-    View.OnClickListener {
+public class RawDataPatientDetailsActivity extends AppCompatActivity {
 
   private Raw_data res;
 
@@ -28,8 +30,13 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity implements
     if (getIntent().getExtras() != null) {
       res = (Raw_data) getIntent().getExtras().getSerializable("data");
     }
-    ImageView ivPatient = findViewById(R.id.iv_patient_raw_data);
-    TextView tvPatientNumber = findViewById(R.id.tv_patient_number_raw_data);
+    final Toolbar toolbar = findViewById(R.id.anim_toolbar);
+    setSupportActionBar(toolbar);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    toolbar.setNavigationIcon(R.drawable.ic_back_white);
+    AppBarLayout appBarLayout = findViewById(R.id.appbar);
+    CollapsingToolbarLayout mCollapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
     TextView tvStatePatientNumber = findViewById(R.id.tv_state_patient_number_raw_data);
     TextView tvPatientGender = findViewById(R.id.tv_gender_raw_data);
     TextView tvPatientAge = findViewById(R.id.tv_age_raw_data);
@@ -40,16 +47,16 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity implements
     TextView tvPatientReportedOn = findViewById(R.id.tv_reported_on_raw_data);
     TextView tvPatientNotes = findViewById(R.id.tv_notes_raw_data);
     TextView tvPatientSources = findViewById(R.id.tv_source_one_raw_data);
-    ImageView ivBack = findViewById(R.id.iv_back_raw_data);
+    ImageView header = findViewById(R.id.header);
     if (!res.getGenderImageUrl().equals("")) {
       Glide.with(RawDataPatientDetailsActivity.this).load(res.getGenderImageUrl())
-          .into(ivPatient);
+          .into(header);
     } else {
       Glide.with(RawDataPatientDetailsActivity.this).load(res.getUnKnownImageUrl())
-          .into(ivPatient);
+          .into(header);
     }
     if (res != null) {
-      tvPatientNumber.setText("P ".concat(res.getPatientnumber()));
+      mCollapsingToolbarLayout.setTitle("P ".concat(res.getPatientnumber()));
       tvStatePatientNumber
           .setText(
               tvStatePatientNumber.getText().toString().concat(": ")
@@ -81,20 +88,18 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity implements
 
       Linkify.addLinks(tvPatientSources, Linkify.WEB_URLS);
     }
-    ivBack.setOnClickListener(this);
 
 
-  }
-
-  @Override
-  public void onClick(View view) {
-    if (view.getId() == R.id.iv_back_raw_data) {
-      onBackPressed();
-    }
   }
 
   @Override
   protected void attachBaseContext(Context newBase) {
     super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return true;
   }
 }
