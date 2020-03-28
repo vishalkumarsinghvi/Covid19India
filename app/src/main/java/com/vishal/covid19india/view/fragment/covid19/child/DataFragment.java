@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.chip.Chip;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.model.Covid19.Data.Data;
 import com.vishal.covid19india.utils.NetworkUtils;
-import com.google.android.material.chip.Chip;
 import im.dacer.androidcharts.LineView;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -57,13 +57,13 @@ public class DataFragment extends Fragment implements OnClickListener {
   private void initUI(View view) {
     Chip chipCumulativeData = view.findViewById(R.id.chip_Cumulative_wise_data);
     Chip chipDailyData = view.findViewById(R.id.chip_daily_data);
-    TextView tvConfirmed=view.findViewById(R.id.tv_confirmed_data);
-    TextView tvRecovered=view.findViewById(R.id.tv_recovered_data);
-    TextView tvDeaths=view.findViewById(R.id.tv_deaths_data);
+    TextView tvConfirmed = view.findViewById(R.id.tv_confirmed_data);
+    TextView tvRecovered = view.findViewById(R.id.tv_recovered_data);
+    TextView tvDeaths = view.findViewById(R.id.tv_deaths_data);
     tvConfirmed.setBackgroundColor(Color.RED);
     tvRecovered.setBackgroundColor(Color.GREEN);
     tvDeaths.setBackgroundColor(Color.GRAY);
-    horizontalScrollView=view.findViewById(R.id.horizontalScrollView2);
+    horizontalScrollView = view.findViewById(R.id.horizontalScrollView2);
     lineView = view.findViewById(R.id.line_view);
     lineView.setDrawDotLine(true);
     lineView.setShowPopup(1);
@@ -74,10 +74,17 @@ public class DataFragment extends Fragment implements OnClickListener {
 
 
   private void setData() {
+    confirmedTotalCase.clear();
+    recoveredTotalCase.clear();
+    deceasedTotalCase.clear();
+    confirmedDailyCase.clear();
+    recoveredDailyCase.clear();
+    deceasedDailyCase.clear();
+    dateData.clear();
     Data.getData(new Callback<Data>() {
       @Override
       public void onResponse(@NotNull Call<Data> call, @NotNull Response<Data> response) {
-        if (response.body() != null && response.body().getCases_time_series()!=null) {
+        if (response.body() != null && response.body().getCases_time_series() != null) {
           for (int i = 0; i < response.body().getCases_time_series().size(); i++) {
             if (!response.body().getCases_time_series().get(i).getTotalconfirmed().equals("")) {
               confirmedTotalCase.add(Integer
@@ -101,7 +108,7 @@ public class DataFragment extends Fragment implements OnClickListener {
             public void run() {
               horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
-          },2000);
+          }, 2000);
         }
       }
 

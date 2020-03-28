@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
 
   private void setData() {
     Glide.with(this)
-        .load(R.mipmap.ic_launcher).into(ivLogo);
+        .load(R.drawable.logo).into(ivLogo);
     new Thread(() -> {
       setProgressStatus();
       openMainActivity();

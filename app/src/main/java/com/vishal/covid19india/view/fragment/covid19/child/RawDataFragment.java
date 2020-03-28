@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.RawAdapter;
 import com.vishal.covid19india.model.Covid19.RawData.RawData;
@@ -27,7 +28,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RawDataFragment extends Fragment implements OnClickListener {
+public class RawDataFragment extends Fragment implements OnClickListener,
+    SwipeRefreshLayout.OnRefreshListener {
 
   private TextView tvPid, tvCurrent, tvAge, tvCity;
   private RawAdapter rawAdapter;
@@ -36,6 +38,7 @@ public class RawDataFragment extends Fragment implements OnClickListener {
   private boolean isCurrentClicked;
   private boolean isAgeClicked;
   private boolean isPIDClicked;
+  private SwipeRefreshLayout mSwipeRefreshLayout;
 
   public RawDataFragment() {
   }
@@ -71,6 +74,12 @@ public class RawDataFragment extends Fragment implements OnClickListener {
     tvAge.setOnClickListener(this);
     tvCity.setOnClickListener(this);
     tvCurrent.setOnClickListener(this);
+    mSwipeRefreshLayout = view.findViewById(R.id.swipe_container_raw_data);
+    mSwipeRefreshLayout.setOnRefreshListener(this);
+    mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+        android.R.color.holo_green_dark,
+        android.R.color.holo_orange_dark,
+        android.R.color.holo_blue_dark);
     setUpRawDataRecyclerView(view);
   }
 
@@ -91,6 +100,8 @@ public class RawDataFragment extends Fragment implements OnClickListener {
   }
 
   private void getRawData() {
+    raw_dataArrayList.clear();
+    mSwipeRefreshLayout.setRefreshing(true);
     RawData.getRawData(new Callback<RawData>() {
       @Override
       public void onResponse(@NotNull Call<RawData> call, @NotNull Response<RawData> response) {
@@ -101,12 +112,13 @@ public class RawDataFragment extends Fragment implements OnClickListener {
             }
           }
         }
-
         rawAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
       }
 
       @Override
       public void onFailure(@NotNull Call<RawData> call, @NotNull Throwable t) {
+        mSwipeRefreshLayout.setRefreshing(false);
       }
     });
   }
@@ -136,5 +148,10 @@ public class RawDataFragment extends Fragment implements OnClickListener {
         rawAdapter.notifyDataSetChanged();
         break;
     }
+  }
+
+  @Override
+  public void onRefresh() {
+    getRawData();
   }
 }

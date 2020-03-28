@@ -10,16 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.vishal.covid19india.R;
-import com.vishal.covid19india.adapters.CityWiseAdapter;
-import com.vishal.covid19india.model.Covid19.City.CityModel;
-import com.vishal.covid19india.model.Covid19.Covid19Service;
-import com.vishal.covid19india.model.Covid19.Data.Statewise;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.vishal.covid19india.R;
+import com.vishal.covid19india.adapters.CityWiseAdapter;
 import com.vishal.covid19india.model.Covid19.City.CityDataComparator.CitySorter;
 import com.vishal.covid19india.model.Covid19.City.CityDataComparator.ConfirmedSorter;
 import com.vishal.covid19india.model.Covid19.City.CityDataComparator.StateSorter;
+import com.vishal.covid19india.model.Covid19.City.CityModel;
+import com.vishal.covid19india.model.Covid19.Covid19Service;
+import com.vishal.covid19india.model.Covid19.Data.Statewise;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -28,16 +29,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CityWiseFragment extends Fragment implements OnClickListener {
+public class CityWiseFragment extends Fragment implements OnClickListener,
+    SwipeRefreshLayout.OnRefreshListener {
 
   private CityWiseAdapter cityWiseAdapter;
   private ArrayList<CityModel> cityWiseArrayList = new ArrayList<>();
-  private TextView tvLatestUpdate;
   private TextView tvState, tvCity, tvConfirmed;
 
   private boolean isStateClicked;
   private boolean isCityClicked;
   private boolean isConfirmedClicked;
+  private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
   public CityWiseFragment() {
@@ -66,7 +68,6 @@ public class CityWiseFragment extends Fragment implements OnClickListener {
   }
 
   private void setUpRawDataRecyclerView(View view) {
-    tvLatestUpdate = view.findViewById(R.id.tv_latest_updated);
     tvState = view.findViewById(R.id.tv_state);
     tvCity = view.findViewById(R.id.tv_city);
     tvConfirmed = view.findViewById(R.id.tv_confirmed);
@@ -77,6 +78,12 @@ public class CityWiseFragment extends Fragment implements OnClickListener {
     tvState.setOnClickListener(this);
     tvCity.setOnClickListener(this);
     tvConfirmed.setOnClickListener(this);
+    mSwipeRefreshLayout = view.findViewById(R.id.swipe_container_city_wise_data);
+    mSwipeRefreshLayout.setOnRefreshListener(this);
+    mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+        android.R.color.holo_green_dark,
+        android.R.color.holo_orange_dark,
+        android.R.color.holo_blue_dark);
     setUpCityWiseRecyclerView(view);
   }
 
@@ -97,17 +104,22 @@ public class CityWiseFragment extends Fragment implements OnClickListener {
   }
 
   private void getCityData() {
+    cityWiseArrayList.clear();
+    mSwipeRefreshLayout.setRefreshing(true);
     Covid19Service.getInstanceCovid19().getStateDistrictWise().enqueue(new Callback<JsonObject>() {
       @Override
       public void onResponse(@NotNull Call<JsonObject> call,
           @NotNull Response<JsonObject> response) {
-        assert response.body() != null;
-        getListDataFromJson(response.body());
-        cityWiseAdapter.notifyDataSetChanged();
+        if (response.body() != null) {
+          getListDataFromJson(response.body());
+          cityWiseAdapter.notifyDataSetChanged();
+        }
+        mSwipeRefreshLayout.setRefreshing(false);
       }
 
       @Override
       public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
+        mSwipeRefreshLayout.setRefreshing(false);
       }
     });
   }
@@ -149,5 +161,10 @@ public class CityWiseFragment extends Fragment implements OnClickListener {
         cityWiseAdapter.notifyDataSetChanged();
         break;
     }
+  }
+
+  @Override
+  public void onRefresh() {
+    getCityData();
   }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.StateWiseAdapter;
 import com.vishal.covid19india.model.Covid19.Data.Data;
@@ -32,7 +33,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StateWiseFragment extends Fragment implements OnClickListener {
+public class StateWiseFragment extends Fragment implements OnClickListener,
+    SwipeRefreshLayout.OnRefreshListener {
 
   private TextView tvState, tvConfirmed, tvActive, tvRecovered, tvDeath;
   private StateWiseAdapter stateWiseAdapter;
@@ -43,6 +45,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
   private boolean isDeathClicked;
   private boolean isRecoveredClicked;
   private boolean isActiveClicked;
+  private SwipeRefreshLayout mSwipeRefreshLayout;
 
   public StateWiseFragment() {
   }
@@ -81,6 +84,12 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
     tvActive.setOnClickListener(this);
     tvRecovered.setOnClickListener(this);
     tvDeath.setOnClickListener(this);
+    mSwipeRefreshLayout = view.findViewById(R.id.swipe_container_state_wise_data);
+    mSwipeRefreshLayout.setOnRefreshListener(this);
+    mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+        android.R.color.holo_green_dark,
+        android.R.color.holo_orange_dark,
+        android.R.color.holo_blue_dark);
     setUpRawDataRecyclerView(view);
   }
 
@@ -98,10 +107,12 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
   }
 
   private void setData() {
-    getRawData();
+    getStateWiseData();
   }
 
-  private void getRawData() {
+  private void getStateWiseData() {
+    statewiseArrayList.clear();
+    mSwipeRefreshLayout.setRefreshing(true);
     Data.getData(new Callback<Data>() {
       @Override
       public void onResponse(@NotNull Call<Data> call, @NotNull Response<Data> response) {
@@ -134,12 +145,14 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
             }
           }
           statewiseArrayList.addAll(response.body().getStatewise());
-          stateWiseAdapter.notifyDataSetChanged();
         }
+        stateWiseAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
       }
 
       @Override
       public void onFailure(@NotNull Call<Data> call, @NotNull Throwable t) {
+        mSwipeRefreshLayout.setRefreshing(false);
       }
     });
   }
@@ -179,5 +192,10 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
       statewiseArrayList.add(0, statewises);
       stateWiseAdapter.notifyDataSetChanged();
     }
+  }
+
+  @Override
+  public void onRefresh() {
+    getStateWiseData();
   }
 }
