@@ -87,9 +87,45 @@
       android:textSize="16sp"
       android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_recovered_data" />
+    <TextView
+      android:id="@+id/tv_confirmed_data"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="32dp"
+      android:gravity="center"
+      android:padding="2dp"
+      android:textColor="@android:color/white"
+      android:text="@string/confirmed"
+      app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
+      app:layout_constraintEnd_toStartOf="@+id/tv_recovered_data"
+      app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
+    <TextView
+      android:id="@+id/tv_recovered_data"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:gravity="center"
+      android:padding="2dp"
+      android:textColor="@android:color/white"
+      android:text="@string/recovered"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+    <TextView
+      android:id="@+id/tv_deaths_data"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="32dp"
+      android:gravity="center"
+      android:padding="2dp"
+      android:textColor="@android:color/white"
+      android:text="@string/deaths"
+      app:layout_constraintBottom_toBottomOf="@+id/tv_recovered_data"
+      app:layout_constraintStart_toEndOf="@+id/tv_recovered_data"
+      app:layout_constraintTop_toTopOf="@+id/tv_recovered_data" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

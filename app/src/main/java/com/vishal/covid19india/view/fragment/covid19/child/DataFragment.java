@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.model.Covid19.Data.Data;
@@ -29,6 +31,7 @@ public class DataFragment extends Fragment implements OnClickListener {
   private ArrayList<Integer> deceasedDailyCase = new ArrayList<>();
   private ArrayList<String> dateData = new ArrayList<>();
   private LineView lineView;
+  private HorizontalScrollView horizontalScrollView;
 
   public DataFragment() {
   }
@@ -54,6 +57,13 @@ public class DataFragment extends Fragment implements OnClickListener {
   private void initUI(View view) {
     Chip chipCumulativeData = view.findViewById(R.id.chip_Cumulative_wise_data);
     Chip chipDailyData = view.findViewById(R.id.chip_daily_data);
+    TextView tvConfirmed=view.findViewById(R.id.tv_confirmed_data);
+    TextView tvRecovered=view.findViewById(R.id.tv_recovered_data);
+    TextView tvDeaths=view.findViewById(R.id.tv_deaths_data);
+    tvConfirmed.setBackgroundColor(Color.RED);
+    tvRecovered.setBackgroundColor(Color.GREEN);
+    tvDeaths.setBackgroundColor(Color.GRAY);
+    horizontalScrollView=view.findViewById(R.id.horizontalScrollView2);
     lineView = view.findViewById(R.id.line_view);
     lineView.setDrawDotLine(true);
     lineView.setShowPopup(1);
@@ -86,6 +96,12 @@ public class DataFragment extends Fragment implements OnClickListener {
             }
           }
           setChartTotalData();
+          horizontalScrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+              horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+          },2000);
         }
       }
 
