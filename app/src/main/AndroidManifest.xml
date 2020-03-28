@@ -19,13 +19,19 @@
 
     <activity
       android:name="com.vishal.covid19india.view.activity.RawDataPatientDetailsActivity"
-      android:theme="@style/AppTheme.NoActionBar" />
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar"
+      tools:ignore="LockedOrientationActivity" />
     <activity
       android:name="com.vishal.covid19india.view.activity.HomeActivity"
-      android:theme="@style/AppTheme.NoActionBar" />
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar"
+      tools:ignore="LockedOrientationActivity" />
     <activity
       android:name="com.vishal.covid19india.view.activity.SplashActivity"
-      android:theme="@style/AppTheme.NoActionBar">
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar"
+      tools:ignore="LockedOrientationActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

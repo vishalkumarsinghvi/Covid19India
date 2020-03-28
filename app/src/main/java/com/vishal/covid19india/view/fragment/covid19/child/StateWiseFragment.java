@@ -106,7 +106,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
       @Override
       public void onResponse(@NotNull Call<Data> call, @NotNull Response<Data> response) {
         if (response.body() != null && response.body().getStatewise() != null) {
-          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.ENGLISH);
+          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss",Locale.ENGLISH);
           Date past = null;
           Date now = new Date();
           if (response.body().getStatewise().get(0).getLastupdatedtime() != null) {
