@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.StateWiseAdapter;
 import com.vishal.covid19india.model.Covid19.Data.Data;
-import com.vishal.covid19india.model.Covid19.Data.Statewise;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ActiveSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ConfirmedSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.DeathsSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.RecoveredSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.StateSorter;
+import com.vishal.covid19india.model.Covid19.Data.Statewise;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,7 +106,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
       @Override
       public void onResponse(@NotNull Call<Data> call, @NotNull Response<Data> response) {
         if (response.body() != null && response.body().getStatewise() != null) {
-          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss",Locale.ENGLISH);
+          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
           Date past = null;
           Date now = new Date();
           if (response.body().getStatewise().get(0).getLastupdatedtime() != null) {
@@ -146,37 +146,38 @@ public class StateWiseFragment extends Fragment implements OnClickListener {
 
   @Override
   public void onClick(View view) {
-    switch (view.getId()) {
-      case R.id.tv_state:
-        isStateClicked = !isStateClicked;
-        Collections
-            .sort(statewiseArrayList, new StateSorter(isStateClicked));
-        stateWiseAdapter.notifyDataSetChanged();
-        break;
-      case R.id.tv_confirmed:
-        isConfirmedClicked = !isConfirmedClicked;
-        Collections.sort(statewiseArrayList,
-            new ConfirmedSorter(isConfirmedClicked));
-        stateWiseAdapter.notifyDataSetChanged();
-        break;
-      case R.id.tv_active:
-        isActiveClicked = !isActiveClicked;
-        Collections
-            .sort(statewiseArrayList, new ActiveSorter(isActiveClicked));
-        stateWiseAdapter.notifyDataSetChanged();
-        break;
-      case R.id.tv_recovered:
-        isRecoveredClicked = !isRecoveredClicked;
-        Collections.sort(statewiseArrayList,
-            new RecoveredSorter(isRecoveredClicked));
-        stateWiseAdapter.notifyDataSetChanged();
-        break;
-      case R.id.tv_deaths:
-        isDeathClicked = !isDeathClicked;
-        Collections
-            .sort(statewiseArrayList, new DeathsSorter(isDeathClicked));
-        stateWiseAdapter.notifyDataSetChanged();
-        break;
+    if (statewiseArrayList.size() > 0) {
+      Statewise statewises = statewiseArrayList.get(0);
+      statewiseArrayList.remove(0);
+      switch (view.getId()) {
+        case R.id.tv_state:
+          isStateClicked = !isStateClicked;
+          Collections
+              .sort(statewiseArrayList, new StateSorter(isStateClicked));
+          break;
+        case R.id.tv_confirmed:
+          isConfirmedClicked = !isConfirmedClicked;
+          Collections.sort(statewiseArrayList,
+              new ConfirmedSorter(isConfirmedClicked));
+          break;
+        case R.id.tv_active:
+          isActiveClicked = !isActiveClicked;
+          Collections
+              .sort(statewiseArrayList, new ActiveSorter(isActiveClicked));
+          break;
+        case R.id.tv_recovered:
+          isRecoveredClicked = !isRecoveredClicked;
+          Collections.sort(statewiseArrayList,
+              new RecoveredSorter(isRecoveredClicked));
+          break;
+        case R.id.tv_deaths:
+          isDeathClicked = !isDeathClicked;
+          Collections
+              .sort(statewiseArrayList, new DeathsSorter(isDeathClicked));
+          break;
+      }
+      statewiseArrayList.add(0, statewises);
+      stateWiseAdapter.notifyDataSetChanged();
     }
   }
 }
