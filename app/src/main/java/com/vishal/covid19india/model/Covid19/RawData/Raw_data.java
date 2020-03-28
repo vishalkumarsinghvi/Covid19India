@@ -1,8 +1,8 @@
 package com.vishal.covid19india.model.Covid19.RawData;
 
+import com.google.gson.annotations.SerializedName;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.constants.AppConstants;
-import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +17,7 @@ public class Raw_data implements Serializable {
   @SerializedName("estimatedonsetdate")
   private String estimatedonsetdate;
 
-  @SerializedName("notes")
+  @SerializedName("_d180g")
   private String notes;
 
   @SerializedName("gender")
@@ -64,7 +64,7 @@ public class Raw_data implements Serializable {
 
   private int unKnownImageUrl;
 
-  private String genderImageUrl="";
+  private String genderImageUrl = "";
 
   public String getGenderImageUrl() {
     return genderImageUrl;
@@ -104,6 +104,10 @@ public class Raw_data implements Serializable {
     return unKnownImageUrl;
   }
 
+  private void setUnKnownImageUrl(int unKnownImageUrl) {
+    this.unKnownImageUrl = unKnownImageUrl;
+  }
+
   private boolean isGenderMale() {
     return gender.equals("M");
   }
@@ -111,11 +115,6 @@ public class Raw_data implements Serializable {
   private boolean isGenderFeMale() {
     return gender.equals("F");
   }
-
-  private void setUnKnownImageUrl(int unKnownImageUrl) {
-    this.unKnownImageUrl = unKnownImageUrl;
-  }
-
 
   public String getPatientnumber() {
     return patientnumber.equals("") ? "-" : patientnumber;
@@ -130,7 +129,7 @@ public class Raw_data implements Serializable {
   }
 
   public String getNotes() {
-    return notes;
+    return notes != null ? notes : backupnotes;
   }
 
   public String getGender() {
@@ -146,9 +145,9 @@ public class Raw_data implements Serializable {
   }
 
   public String getSource3() {
-    if (source3.equals("")){
+    if (source3.equals("")) {
       return source3;
-    }else {
+    } else {
       return "\n3:- ".concat(source3);
     }
 
@@ -159,18 +158,18 @@ public class Raw_data implements Serializable {
   }
 
   public String getSource1() {
-    if (source1.equals("")){
+    if (source1.equals("")) {
       return source1;
-    }else {
+    } else {
       return "\n1:- ".concat(source1);
     }
 
   }
 
   public String getSource2() {
-    if (source2.equals("")){
+    if (source2.equals("")) {
       return source2;
-    }else {
+    } else {
       return "\n2:- ".concat(source2);
     }
 

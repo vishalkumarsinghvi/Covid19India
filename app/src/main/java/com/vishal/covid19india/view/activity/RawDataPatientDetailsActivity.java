@@ -7,11 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.bumptech.glide.Glide;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
-import com.bumptech.glide.Glide;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-import java.util.Objects;
 
 public class RawDataPatientDetailsActivity extends AppCompatActivity implements
     View.OnClickListener {
@@ -26,7 +25,9 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity implements
   }
 
   private void initUI() {
-    res = (Raw_data) Objects.requireNonNull(getIntent().getExtras()).getSerializable("data");
+    if (getIntent().getExtras() != null) {
+      res = (Raw_data) getIntent().getExtras().getSerializable("data");
+    }
     ImageView ivPatient = findViewById(R.id.iv_patient_raw_data);
     TextView tvPatientNumber = findViewById(R.id.tv_patient_number_raw_data);
     TextView tvStatePatientNumber = findViewById(R.id.tv_state_patient_number_raw_data);
@@ -47,37 +48,39 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity implements
       Glide.with(RawDataPatientDetailsActivity.this).load(res.getUnKnownImageUrl())
           .into(ivPatient);
     }
-    tvPatientNumber.setText("P ".concat(res.getPatientnumber()));
-    tvStatePatientNumber
-        .setText(
-            tvStatePatientNumber.getText().toString().concat(": ")
-                .concat(res.getStatepatientnumber()));
-    tvPatientGender
-        .setText(tvPatientGender.getText().toString().concat(": ").concat(res.getGender()));
-    tvPatientAge
-        .setText(tvPatientAge.getText().toString().concat(": ").concat(res.getAgebracket()));
-    tvPatientNationality
-        .setText(
-            tvPatientNationality.getText().toString().concat(": ").concat(res.getNationality()));
-    tvPatientState
-        .setText(tvPatientState.getText().toString().concat(": ").concat(res.getDetectedstate()));
-    tvPatientCity
-        .setText(tvPatientCity.getText().toString().concat(": ").concat(res.getDetectedcity()));
-    tvPatientCurrentStatus.setText(
-        tvPatientCurrentStatus.getText().toString().concat(": ").concat(res.getCurrentstatus()));
-    tvPatientReportedOn
-        .setText(
-            tvPatientReportedOn.getText().toString().concat(": ").concat(res.getDateannounced()));
-    tvPatientNotes
-        .setText(tvPatientNotes.getText().toString().concat(": ").concat(res.getNotes()));
-    tvPatientSources
-        .setText(
-            tvPatientSources.getText().toString()
-                .concat(res.getSource1())
-                .concat(res.getSource2())
-                .concat(res.getSource3()));
+    if (res != null) {
+      tvPatientNumber.setText("P ".concat(res.getPatientnumber()));
+      tvStatePatientNumber
+          .setText(
+              tvStatePatientNumber.getText().toString().concat(": ")
+                  .concat(res.getStatepatientnumber()));
+      tvPatientGender
+          .setText(tvPatientGender.getText().toString().concat(": ").concat(res.getGender()));
+      tvPatientAge
+          .setText(tvPatientAge.getText().toString().concat(": ").concat(res.getAgebracket()));
+      tvPatientNationality
+          .setText(
+              tvPatientNationality.getText().toString().concat(": ").concat(res.getNationality()));
+      tvPatientState
+          .setText(tvPatientState.getText().toString().concat(": ").concat(res.getDetectedstate()));
+      tvPatientCity
+          .setText(tvPatientCity.getText().toString().concat(": ").concat(res.getDetectedcity()));
+      tvPatientCurrentStatus.setText(
+          tvPatientCurrentStatus.getText().toString().concat(": ").concat(res.getCurrentstatus()));
+      tvPatientReportedOn
+          .setText(
+              tvPatientReportedOn.getText().toString().concat(": ").concat(res.getDateannounced()));
+      tvPatientNotes
+          .setText(tvPatientNotes.getText().toString().concat(": ").concat(res.getNotes()));
+      tvPatientSources
+          .setText(
+              tvPatientSources.getText().toString()
+                  .concat(res.getSource1())
+                  .concat(res.getSource2())
+                  .concat(res.getSource3()));
 
-    Linkify.addLinks(tvPatientSources, Linkify.WEB_URLS);
+      Linkify.addLinks(tvPatientSources, Linkify.WEB_URLS);
+    }
     ivBack.setOnClickListener(this);
 
 
