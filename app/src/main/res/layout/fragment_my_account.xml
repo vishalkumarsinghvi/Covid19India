@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:paddingBottom="?attr/actionBarSize"
+  tools:context="com.vishal.covid19india.view.fragment.myAccount.MyAccountFragment">
+  <RelativeLayout
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@android:color/white">
+    <LinearLayout
+      android:id="@+id/phoneAuthFields"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp">
+
+      <TextView
+        android:id="@+id/tv_verify_your_number"
+        style="@style/AppTheme.MyTextView"
+        android:padding="16dp"
+        android:text="@string/verify_your_number"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+      <ImageView
+        android:id="@+id/iv_mobile_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_mobile"
+        android:contentDescription="@string/desc" />
+      <TextView
+        android:id="@+id/tv_enter_your_number_text"
+        style="@style/AppTheme.MyTextView"
+        android:padding="16dp"
+        android:text="@string/enter_your_mobile_number_to_create_your_account"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldPhoneNumber_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/fieldPhoneNumber"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/hint_phone_number"
+          android:inputType="phone"
+          android:maxLength="10" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldVerificationCode_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/fieldVerificationCode"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/hint_verification_code"
+          android:inputType="number" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonStartVerification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/curve_button"
+        android:text="@string/get_otp" />
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonVerifyPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/curve_button"
+        android:text="@string/verify_otp" />
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonResend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/curve_button"
+        android:text="@string/resend_otp" />
+
+    </LinearLayout>
+    <RelativeLayout
+      android:id="@+id/signedInButtons"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:orientation="vertical"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:visibility="gone"
+      android:weightSum="1.0">
+
+      <ImageView
+        android:id="@+id/iv_user_account_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_my_account"
+        android:contentDescription="@string/desc" />
+
+      <TextView
+        android:id="@+id/tv_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_user_account_view"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:gravity="center" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/signOutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_phone_number"
+        android:layout_margin="16dp"
+        android:background="@drawable/curve_button"
+        android:text="@string/sign_out" />
+
+    </RelativeLayout>
+
+
+  </RelativeLayout>
+
+</ScrollView>

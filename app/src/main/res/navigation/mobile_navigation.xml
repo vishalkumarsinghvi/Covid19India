@@ -9,16 +9,16 @@
     android:name="com.vishal.covid19india.view.fragment.covid19.Covid19Fragment"
     android:label="@string/title_covid_19"
     tools:layout="@layout/fragment_covid_19" />
-<!--  <fragment-->
-<!--    android:id="@+id/navigation_precautions"-->
-<!--    android:name="com.vishal.covid19india.view.fragment.precaution.PrecautionsFragment"-->
-<!--    android:label="@string/title_precautions"-->
-<!--    tools:layout="@layout/fragment_precautions" />-->
+    <fragment
+      android:id="@+id/navigation_precautions"
+      android:name="com.vishal.covid19india.view.fragment.precaution.PrecautionsFragment"
+      android:label="@string/title_precautions"
+      tools:layout="@layout/fragment_precautions" />
 
-<!--  <fragment-->
-<!--    android:id="@+id/navigation_radio"-->
-<!--    android:name="com.vishal.covid19india.view.fragment.contact.ContactFragment"-->
-<!--    android:label="@string/title_contact_us"-->
-<!--    tools:layout="@layout/fragment_contacts" />-->
+  <fragment
+    android:id="@+id/navigation_my_account"
+    android:name="com.vishal.covid19india.view.fragment.myAccount.MyAccountFragment"
+    android:label="@string/title_my_account"
+    tools:layout="@layout/fragment_my_account" />
 
 </navigation>
