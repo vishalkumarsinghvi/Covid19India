@@ -6,4 +6,5 @@
   <color name="chip_selected">#1CB0F3</color>
   <color name="chip_unselected">#E2E2E2</color>
   <color name="logo_color">#c62727</color>
+  <color name="grey_100">#c62727</color>
 </resources>
