@@ -1,5 +1,7 @@
 package com.vishal.covid19india.model.Covid19.Factoids;
 
+import static com.vishal.covid19india.utils.Covid19IndiaApplication.db;
+
 import com.google.gson.annotations.SerializedName;
 import com.vishal.covid19india.model.Covid19.Covid19Service;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class FactoidsModel implements Serializable {
           @NotNull Response<FactoidsModel> response) {
         if (response.isSuccessful() && response.body() != null) {
           callback.onResponse(call, response);
+          db.factoidsDao().insertFactoids(response.body().getFactoids());
         } else {
           callback.onFailure(call, new Throwable("Something went wrong"));
         }

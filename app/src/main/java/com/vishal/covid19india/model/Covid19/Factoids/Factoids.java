@@ -1,19 +1,26 @@
 package com.vishal.covid19india.model.Covid19.Factoids;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import org.jetbrains.annotations.NotNull;
 
+@Entity(tableName = "factoids")
 public class Factoids implements Serializable {
 
+  @PrimaryKey
+  @SerializedName("id")
+  private String id;
+
+  @ColumnInfo(name = "numberoftimes")
   @SerializedName("numberoftimes")
   private String numberoftimes;
 
+  @ColumnInfo(name = "banner")
   @SerializedName("banner")
   private String banner;
-
-  @SerializedName("id")
-  private String id;
 
   public String getNumberoftimes() {
     return numberoftimes;
