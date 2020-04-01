@@ -11,4 +11,6 @@ public class AppConstants {
   public static String Recovered = "Recovered";
   public static String Deceased = "Deceased";
   public static String Hospitalized = "Hospitalized";
+  public static final String SENT_TOKEN_TO_SERVER = "SENT_TOKEN_TO_SERVER";
+  public static final String REGISTRATION_ID = "REGISTRATION_ID";
 }

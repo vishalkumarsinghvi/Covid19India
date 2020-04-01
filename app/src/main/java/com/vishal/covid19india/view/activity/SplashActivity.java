@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
-import com.vishal.covid19india.R;
 import com.bumptech.glide.Glide;
+import com.vishal.covid19india.R;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
@@ -29,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
   private void init() {
     ivLogo = findViewById(R.id.iv_logo);
     progressBar = findViewById(R.id.progressBar);
-    getSharedPreferences("covid19india", MODE_PRIVATE).edit().putBoolean("isRunInBackground",false).apply();
   }
 
   private void setData() {

@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
@@ -41,27 +41,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
       if (newsList.get(position).startsWith("http://") || newsList.get(position)
           .startsWith("https://")) {
         holder.webview.loadData(getHtmlCode(newsList.get(position)), "text/html", "UTF-8");
-        holder.webview.setWebViewClient(new WebViewClient() {
+        holder.webview.setWebChromeClient(new WebChromeClient() {
           @Override
-          public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            holder.progressBar.setVisibility(View.GONE);
+          public void onProgressChanged(WebView view, int progress) {
+            super.onProgressChanged(view, progress);
+            if (progress == 100) {
+              holder.progressBar.setVisibility(View.GONE);
+            }
           }
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View arg0) {
-            String url = newsList.get(position);
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            arg0.getContext().startActivity(i);
-          }
+        holder.webview.setOnClickListener(view -> {
+          String url = newsList.get(position);
+          Intent i = new Intent(Intent.ACTION_VIEW);
+          i.setData(Uri.parse(url));
+          view.getContext().startActivity(i);
         });
       }
     }
   }
 
-  public String getHtmlCode(String url) {
+  private String getHtmlCode(String url) {
     return "<!DOCTYPE html>\n"
         + "<html>\n"
         + "<body>\n"
