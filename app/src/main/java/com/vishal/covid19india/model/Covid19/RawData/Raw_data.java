@@ -163,7 +163,18 @@ public class Raw_data implements Serializable {
     } else {
       return "\n1:- ".concat(source1);
     }
+  }
 
+  public String getSource() {
+    if (!source1.equals("")) {
+      return source1;
+    } else if (!source2.equals("")) {
+      return source2;
+    } else if (!source3.equals("")) {
+      return source3;
+    } else {
+      return "";
+    }
   }
 
   public String getSource2() {

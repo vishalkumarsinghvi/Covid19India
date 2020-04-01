@@ -2,7 +2,7 @@
   <string name="app_name">Covid19 India</string>
   <string name="title_activity_home">HomeActivity</string>
   <string name="title_my_account">My Account</string>
-  <string name="title_precautions">Precautions</string>
+  <string name="title_news">Covid19 News</string>
   <string name="title_covid_19">Covid19</string>
   <string name="splashlogo">splashLogo</string>
   <string name="background_mode">Background Mode</string>
@@ -66,7 +66,7 @@
   <string name="status_sign_in_failed">Sign-in failed</string>
   <string name="instant_validation">(instant validation)</string>
   <string name="firebase_status_fmt">Firebase UID: %s</string>
-  <string name="enter_your_mobile_number_to_create_your_account">Enter your mobile number to create your account</string>
+  <string name="enter_your_mobile_number_to_create_your_account">Enter your mobile number to create your account and get latest news</string>
   <string name="verify_your_number">Verify your Number</string>
   <string name="mobile_number">Mobile Number</string>
   <string name="get_otp">GET Otp</string>

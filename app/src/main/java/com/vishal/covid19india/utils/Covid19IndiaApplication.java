@@ -1,6 +1,8 @@
 package com.vishal.covid19india.utils;
 
 import android.app.Application;
+import android.content.Context;
+import androidx.multidex.MultiDex;
 import com.vishal.covid19india.R;
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
@@ -19,5 +21,9 @@ public class Covid19IndiaApplication extends Application {
                 .build()))
         .build());
   }
-
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(base);
+  }
 }

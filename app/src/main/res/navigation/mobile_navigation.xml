@@ -10,10 +10,10 @@
     android:label="@string/title_covid_19"
     tools:layout="@layout/fragment_covid_19" />
     <fragment
-      android:id="@+id/navigation_precautions"
-      android:name="com.vishal.covid19india.view.fragment.precaution.PrecautionsFragment"
-      android:label="@string/title_precautions"
-      tools:layout="@layout/fragment_precautions" />
+      android:id="@+id/navigation_news"
+      android:name="com.vishal.covid19india.view.fragment.news.NewsFragment"
+      android:label="@string/title_news"
+      tools:layout="@layout/fragment_news" />
 
   <fragment
     android:id="@+id/navigation_my_account"
