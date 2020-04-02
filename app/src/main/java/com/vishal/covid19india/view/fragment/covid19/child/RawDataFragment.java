@@ -112,6 +112,7 @@ public class RawDataFragment extends Fragment implements OnClickListener,
             }
           }
         }
+        Collections.reverse(raw_dataArrayList);
         rawAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
       }
