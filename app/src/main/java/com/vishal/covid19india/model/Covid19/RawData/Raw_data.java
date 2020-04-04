@@ -64,36 +64,36 @@ public class Raw_data implements Serializable {
 
   private int unKnownImageUrl;
 
-  private String genderImageUrl = "";
+  private int genderImageUrl = 0;
 
-  public String getGenderImageUrl() {
+  public int getGenderImageUrl() {
     return genderImageUrl;
   }
 
   public void setGenderImageUrl() {
     if (currentstatus.equals(AppConstants.Recovered)) {
       if (isGenderMale()) {
-        this.genderImageUrl = AppConstants.Male_Recovered;
+        this.genderImageUrl = R.drawable.male_recovered;
       } else if (isGenderFeMale()) {
-        this.genderImageUrl = AppConstants.Female_Recovered;
+        this.genderImageUrl = R.drawable.female_recovered;
       } else {
         setUnKnownImageUrl(R.drawable.ic_unkown_recovered);
       }
     }
     if (currentstatus.equals(AppConstants.Hospitalized)) {
       if (isGenderMale()) {
-        this.genderImageUrl = AppConstants.Male_Hospitalized;
+        this.genderImageUrl = R.drawable.male_hospitalized;
       } else if (isGenderFeMale()) {
-        this.genderImageUrl = AppConstants.Female_Hospitalized;
+        this.genderImageUrl = R.drawable.female_hospitalized;
       } else {
         setUnKnownImageUrl(R.drawable.ic_unkown_hospitalized);
       }
     }
     if (currentstatus.equals(AppConstants.Deceased)) {
       if (isGenderMale()) {
-        this.genderImageUrl = AppConstants.Male_Deceased;
+        this.genderImageUrl = R.drawable.male_deceased;
       } else if (isGenderFeMale()) {
-        this.genderImageUrl = AppConstants.Female_Deceased;
+        this.genderImageUrl = R.drawable.female_deceased;
       } else {
         setUnKnownImageUrl(R.drawable.ic_unkown_deceased);
       }

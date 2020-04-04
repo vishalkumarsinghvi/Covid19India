@@ -38,7 +38,7 @@ public class RawAdapter extends RecyclerView.Adapter<RawAdapter.ViewHolder> {
   public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
     if (raw_dataArrayList != null) {
       raw_dataArrayList.get(position).setGenderImageUrl();
-      if (!raw_dataArrayList.get(position).getGenderImageUrl().equals("")) {
+      if (raw_dataArrayList.get(position).getGenderImageUrl()!=0) {
         Glide.with(context).load(raw_dataArrayList.get(position).getGenderImageUrl())
             .into(holder.ivPatient);
       } else {

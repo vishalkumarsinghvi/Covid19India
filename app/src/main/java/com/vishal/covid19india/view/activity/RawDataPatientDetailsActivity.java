@@ -48,7 +48,7 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity {
     TextView tvPatientNotes = findViewById(R.id.tv_notes_raw_data);
     TextView tvPatientSources = findViewById(R.id.tv_source_one_raw_data);
     ImageView header = findViewById(R.id.header);
-    if (!res.getGenderImageUrl().equals("")) {
+    if (res.getGenderImageUrl()!=0) {
       Glide.with(RawDataPatientDetailsActivity.this).load(res.getGenderImageUrl())
           .into(header);
     } else {
