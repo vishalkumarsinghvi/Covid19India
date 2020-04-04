@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import com.vishal.covid19india.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.vishal.covid19india.R;
+import com.vishal.covid19india.utils.AppController;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView navView = findViewById(R.id.nav_view);
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupWithNavController(navView, navController);
+    new AppController(HomeActivity.this).firebaseUpdateInit();
   }
 
   @Override

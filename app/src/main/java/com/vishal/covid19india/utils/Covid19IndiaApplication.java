@@ -20,8 +20,9 @@ public class Covid19IndiaApplication extends Application {
     ViewPump.init(ViewPump.builder()
         .addInterceptor(new CalligraphyInterceptor(
             new CalligraphyConfig.Builder()
-                .setDefaultFontPath("../assets/fonts/roboto-regular.ttf")
+                .setDefaultFontPath("fonts/roboto-medium.ttf")
                 .setFontAttrId(R.attr.fontPath)
+                .setFontMapper(font -> font)
                 .build()))
         .build());
 
