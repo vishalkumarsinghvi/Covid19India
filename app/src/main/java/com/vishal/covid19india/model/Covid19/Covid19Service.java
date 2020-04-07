@@ -4,8 +4,10 @@ import com.vishal.covid19india.model.Covid19.Data.Data;
 import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
 import com.vishal.covid19india.model.Covid19.RawData.RawData;
 import com.vishal.covid19india.model.Covid19.TravelHistory.TravelHistory;
+import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
 import com.vishal.covid19india.retrofit.RetrofitClientInstance;
 import com.google.gson.JsonObject;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -37,6 +39,9 @@ public class Covid19Service {
 
     @GET("website_data.json")
     Call<FactoidsModel> getFactoidsList();
+
+    @GET("updatelog/log.json")
+    Call<List<UpdateTimeline>> getUpdateTimeline();
   }
 
 }

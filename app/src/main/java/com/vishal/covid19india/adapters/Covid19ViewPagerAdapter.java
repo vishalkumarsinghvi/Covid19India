@@ -9,6 +9,7 @@ import com.vishal.covid19india.view.fragment.covid19.child.CityWiseFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.DataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.RawDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment;
+import com.vishal.covid19india.view.fragment.covid19.child.UpdateTimelineFragment;
 import java.util.ArrayList;
 
 public class Covid19ViewPagerAdapter extends FragmentStateAdapter {
@@ -30,12 +31,15 @@ public class Covid19ViewPagerAdapter extends FragmentStateAdapter {
         fragment = StateWiseFragment.newInstance();
         break;
       case 1:
-        fragment = RawDataFragment.newInstance();
+        fragment = UpdateTimelineFragment.newInstance();
         break;
       case 2:
-        fragment = CityWiseFragment.newInstance();
+        fragment = RawDataFragment.newInstance();
         break;
       case 3:
+        fragment = CityWiseFragment.newInstance();
+        break;
+      case 4:
         fragment = DataFragment.newInstance();
         break;
     }

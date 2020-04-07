@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white"
+  tools:context="com.vishal.covid19india.view.fragment.covid19.child.UpdateTimelineFragment">
+  <TextView
+    android:id="@+id/tv_latest_updated_timeline"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:gravity="center"
+    android:text="@string/last_update"
+    android:visibility="gone"
+    android:textColor="#28a745"
+    android:textSize="16sp" />
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_container_update_timeline_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/tv_latest_updated_timeline"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp">
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_update_timeline_data"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
