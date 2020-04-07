@@ -199,7 +199,7 @@ public class Raw_data implements Serializable {
   }
 
   public String getDetecteddistrict() {
-    return detecteddistrict;
+    return detecteddistrict.equals("") ? "-" : detecteddistrict;
   }
 
   public String getBackupnotes() {

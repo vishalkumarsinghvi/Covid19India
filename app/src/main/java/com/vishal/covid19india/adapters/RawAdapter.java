@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
 import com.vishal.covid19india.view.activity.RawDataPatientDetailsActivity;
-import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RawAdapter extends RecyclerView.Adapter<RawAdapter.ViewHolder> {
@@ -38,7 +38,7 @@ public class RawAdapter extends RecyclerView.Adapter<RawAdapter.ViewHolder> {
   public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
     if (raw_dataArrayList != null) {
       raw_dataArrayList.get(position).setGenderImageUrl();
-      if (raw_dataArrayList.get(position).getGenderImageUrl()!=0) {
+      if (raw_dataArrayList.get(position).getGenderImageUrl() != 0) {
         Glide.with(context).load(raw_dataArrayList.get(position).getGenderImageUrl())
             .into(holder.ivPatient);
       } else {
@@ -52,7 +52,9 @@ public class RawAdapter extends RecyclerView.Adapter<RawAdapter.ViewHolder> {
       holder.tvPatientAge
           .setText(raw_dataArrayList.get(position).getAgebracket());
       holder.tvPatientCity
-          .setText(raw_dataArrayList.get(position).getDetectedcity());
+          .setText(raw_dataArrayList.get(position).getDetectedcity().equals("-") ? raw_dataArrayList
+              .get(position).getDetecteddistrict()
+              : raw_dataArrayList.get(position).getDetectedcity());
       holder.itemView.setOnClickListener(view -> {
         Intent intent = new Intent(context, RawDataPatientDetailsActivity.class);
         Bundle b = new Bundle();

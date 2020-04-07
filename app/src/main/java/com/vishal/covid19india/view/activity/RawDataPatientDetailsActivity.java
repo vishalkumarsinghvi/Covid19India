@@ -71,7 +71,7 @@ public class RawDataPatientDetailsActivity extends AppCompatActivity {
       tvPatientState
           .setText(tvPatientState.getText().toString().concat(": ").concat(res.getDetectedstate()));
       tvPatientCity
-          .setText(tvPatientCity.getText().toString().concat(": ").concat(res.getDetectedcity()));
+          .setText(tvPatientCity.getText().toString().concat(": ").concat(res.getDetecteddistrict()).concat(" / ").concat(res.getDetectedcity()));
       tvPatientCurrentStatus.setText(
           tvPatientCurrentStatus.getText().toString().concat(": ").concat(res.getCurrentstatus()));
       tvPatientReportedOn
