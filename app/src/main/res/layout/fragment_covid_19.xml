@@ -66,17 +66,6 @@
         app:chipBackgroundColor="@color/bg_chip_state_list" />
 
       <com.google.android.material.chip.Chip
-        android:id="@+id/chip_city_wise_data"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/city_wise_data"
-        android:textColor="@android:color/white"
-        app:chipBackgroundColor="@color/bg_chip_state_list" />
-
-      <com.google.android.material.chip.Chip
         android:id="@+id/chip_data"
         style="@style/Widget.MaterialComponents.Chip.Choice"
         android:layout_width="wrap_content"

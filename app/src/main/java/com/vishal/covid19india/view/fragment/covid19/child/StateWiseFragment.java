@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.StateWiseAdapter;
+import com.vishal.covid19india.model.Covid19.City.CityDataComparator;
+import com.vishal.covid19india.model.Covid19.City.NewCityModel;
+import com.vishal.covid19india.model.Covid19.Covid19Service;
 import com.vishal.covid19india.model.Covid19.Data.Data;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ActiveSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ConfirmedSorter;
@@ -25,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -144,10 +148,13 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
               tvLatestUpdate.setText(response.body().getStatewise().get(0).getLastupdatedtime());
             }
           }
-          statewiseArrayList.addAll(response.body().getStatewise());
+          for (int i = 0; i < response.body().getStatewise().size(); i++) {
+            if (!response.body().getStatewise().get(i).getConfirmed().equals("0")) {
+              statewiseArrayList.add(response.body().getStatewise().get(i));
+            }
+          }
+          getCityData();
         }
-        stateWiseAdapter.notifyDataSetChanged();
-        mSwipeRefreshLayout.setRefreshing(false);
       }
 
       @Override
@@ -155,6 +162,36 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
         mSwipeRefreshLayout.setRefreshing(false);
       }
     });
+  }
+
+  private void getCityData() {
+    Covid19Service.getInstanceCovid19().getNewCityDistrictWise()
+        .enqueue(new Callback<List<NewCityModel>>() {
+          @Override
+          public void onResponse(@NotNull Call<List<NewCityModel>> call,
+              @NotNull Response<List<NewCityModel>> response) {
+            if (response.body() != null) {
+              for (int i = 1; i < statewiseArrayList.size(); i++) {
+                for (int j = 0; j < response.body().size(); j++) {
+                  if (statewiseArrayList.get(i).getState()
+                      .equals(response.body().get(j).getState())) {
+                    Collections.sort(response.body().get(j).getDistrictData(),
+                        new CityDataComparator.ConfirmedSorter(false));
+                    statewiseArrayList.get(i)
+                        .setDistrictDataList(response.body().get(j).getDistrictData());
+                    break;
+                  }
+                }
+              }
+            }
+            stateWiseAdapter.notifyDataSetChanged();
+            mSwipeRefreshLayout.setRefreshing(false);
+          }
+
+          @Override
+          public void onFailure(@NotNull Call<List<NewCityModel>> call, @NotNull Throwable t) {
+          }
+        });
   }
 
   @Override

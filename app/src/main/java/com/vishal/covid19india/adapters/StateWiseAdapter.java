@@ -4,15 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.vishal.covid19india.R;
+import com.vishal.covid19india.model.Covid19.City.CityDataComparator.CitySorter;
+import com.vishal.covid19india.model.Covid19.City.CityDataComparator.ConfirmedSorter;
 import com.vishal.covid19india.model.Covid19.Data.Statewise;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 public class StateWiseAdapter extends RecyclerView.Adapter<StateWiseAdapter.ViewHolder> {
 
+  private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
   private ArrayList<Statewise> statewiseArrayList;
   private Context context;
 
@@ -32,16 +40,65 @@ public class StateWiseAdapter extends RecyclerView.Adapter<StateWiseAdapter.View
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
     if (statewiseArrayList != null) {
-      holder.tvTotal.setText(statewiseArrayList.get(position).getState());
+      Statewise item = statewiseArrayList.get(position);
+      holder.tvTotal.setText(item.getState());
       holder.tvConfirmedNumber
-          .setText(statewiseArrayList.get(position).getConfirmed());
+          .setText(item.getConfirmed());
       holder.tvRecoveredNumber
-          .setText(statewiseArrayList.get(position).getRecovered());
+          .setText(item.getRecovered());
       holder.tvDeathNumber
-          .setText(statewiseArrayList.get(position).getDeaths());
+          .setText(item.getDeaths());
       holder.tvActiveNumber
-          .setText(statewiseArrayList.get(position).getActive());
+          .setText(item.getActive());
+      if (item.getDistrictDataList() != null) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
+            holder.rvCityWiseData.getContext(), LinearLayoutManager.VERTICAL, false);
+        layoutManager.setInitialPrefetchItemCount(
+            item.getDistrictDataList().size());
+
+        CityWiseAdapter cityWiseAdapter = new CityWiseAdapter(context,
+            item.getDistrictDataList());
+        holder.rvCityWiseData
+            .setLayoutManager(layoutManager);
+        holder.rvCityWiseData.setHasFixedSize(true);
+        holder.rvCityWiseData.addItemDecoration(
+            new DividerItemDecoration(Objects.requireNonNull(context),
+                DividerItemDecoration.VERTICAL));
+        holder.rvCityWiseData.setAdapter(cityWiseAdapter);
+        holder.rvCityWiseData.setRecycledViewPool(viewPool);
+        holder.rvCityWiseData.setVisibility(!item.isVisible ? View.VISIBLE : View.GONE);
+        holder.llRowData.setVisibility(!item.isVisible ? View.VISIBLE : View.GONE);
+        holder.tvTotal.setCompoundDrawablesWithIntrinsicBounds(
+            !item.isVisible ? R.drawable.ic_down : R.drawable.ic_right, 0, 0, 0);
+      } else {
+        holder.tvTotal.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        holder.rvCityWiseData.setVisibility(View.GONE);
+        holder.llRowData.setVisibility(View.GONE);
+      }
+      holder.itemView.setOnClickListener(view -> {
+        if (position != RecyclerView.NO_POSITION) {
+          item.isVisible = !item.isVisible;
+          notifyItemChanged(position);
+        }
+      });
+      holder.tvDistrict.setOnClickListener(view -> {
+        item.isCityClicked = !item.isCityClicked;
+        Collections.sort(statewiseArrayList.get(position).getDistrictDataList(),
+            new CitySorter(item.isCityClicked));
+        notifyItemChanged(position);
+      });
+      holder.tvDistrictConfirmed.setOnClickListener(view -> {
+        item.isConfirmedClicked = !item.isConfirmedClicked;
+        Collections.sort(statewiseArrayList.get(position).getDistrictDataList(),
+            new ConfirmedSorter(item.isConfirmedClicked));
+        notifyItemChanged(position);
+      });
     }
+  }
+
+  @Override
+  public long getItemId(int position) {
+    return position;
   }
 
   @Override
@@ -51,7 +108,9 @@ public class StateWiseAdapter extends RecyclerView.Adapter<StateWiseAdapter.View
 
   static class ViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView tvTotal, tvConfirmedNumber, tvRecoveredNumber, tvDeathNumber, tvActiveNumber;
+    private TextView tvTotal, tvConfirmedNumber, tvRecoveredNumber, tvDeathNumber, tvActiveNumber, tvDistrict, tvDistrictConfirmed;
+    private RecyclerView rvCityWiseData;
+    private LinearLayout llRowData;
 
     ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -60,6 +119,12 @@ public class StateWiseAdapter extends RecyclerView.Adapter<StateWiseAdapter.View
       tvRecoveredNumber = itemView.findViewById(R.id.tv_recovered_number);
       tvDeathNumber = itemView.findViewById(R.id.tv_deaths_number);
       tvActiveNumber = itemView.findViewById(R.id.tv_active_number);
+      rvCityWiseData = itemView.findViewById(R.id.rv_city_wise_data_in_city);
+      llRowData = itemView.findViewById(R.id.ll_city_wise_data_new);
+      tvDistrict = itemView.findViewById(R.id.tv_District);
+      tvDistrictConfirmed = itemView.findViewById(R.id.tv_District_confirmed);
+      tvDistrict.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
+      tvDistrictConfirmed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     }
   }
 }

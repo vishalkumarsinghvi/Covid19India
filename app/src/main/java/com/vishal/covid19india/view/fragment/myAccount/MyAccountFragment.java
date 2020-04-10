@@ -1,5 +1,7 @@
 package com.vishal.covid19india.view.fragment.myAccount;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,12 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.vishal.covid19india.R;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,7 +56,6 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
   private ViewGroup mSignedInViews;
 
   private TextView mTvMobileNumber;
-//  private TextView mDetailText;
 
   private TextInputEditText mPhoneNumberField;
   private TextInputEditText mVerificationField;
@@ -61,10 +63,10 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
   private TextInputLayout mPhoneNumberFieldTextInput;
   private TextInputLayout mVerificationFieldTextInput;
 
-  private Button mStartButton;
-  private Button mVerifyButton;
-  private Button mResendButton;
-  private Button mSignOutButton;
+  private CircularProgressButton mStartButton;
+  private CircularProgressButton mVerifyButton;
+  private TextView mResendButton;
+  private CircularProgressButton mSignOutButton, mAboutButton;
   private TextWatcher textWatcher;
 
   @Override
@@ -109,11 +111,13 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
     mVerifyButton = view.findViewById(R.id.buttonVerifyPhone);
     mResendButton = view.findViewById(R.id.buttonResend);
     mSignOutButton = view.findViewById(R.id.signOutButton);
+    mAboutButton = view.findViewById(R.id.aboutButton);
 
     mStartButton.setOnClickListener(this);
     mVerifyButton.setOnClickListener(this);
     mResendButton.setOnClickListener(this);
     mSignOutButton.setOnClickListener(this);
+    mAboutButton.setOnClickListener(this);
 
     mAuth = FirebaseAuth.getInstance();
 
@@ -177,7 +181,7 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
   }
 
   private void showSnackBar(String text) {
-    Snackbar.make(getActivity().findViewById(android.R.id.content), text,
+    Snackbar.make(Objects.requireNonNull(getActivity()).findViewById(android.R.id.content), text,
         Snackbar.LENGTH_SHORT).show();
   }
 
@@ -188,7 +192,8 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
     FirebaseUser currentUser = mAuth.getCurrentUser();
     updateUI(currentUser);
     if (mVerificationInProgress && validatePhoneNumber()) {
-      startPhoneNumberVerification("+91".concat(mPhoneNumberField.getText().toString()));
+      startPhoneNumberVerification(
+          "+91".concat(Objects.requireNonNull(mPhoneNumberField.getText()).toString()));
     }
   }
 
@@ -232,10 +237,10 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
 
   private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
     mAuth.signInWithCredential(credential)
-        .addOnCompleteListener(getActivity(), task -> {
+        .addOnCompleteListener(Objects.requireNonNull(getActivity()), task -> {
           if (task.isSuccessful()) {
             Log.d(TAG, "signInWithCredential:success");
-            FirebaseUser user = task.getResult().getUser();
+            FirebaseUser user = Objects.requireNonNull(task.getResult()).getUser();
             updateUI(STATE_SIGNIN_SUCCESS, user);
           } else {
             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -345,7 +350,7 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
   }
 
   private boolean validatePhoneNumber() {
-    String phoneNumber = mPhoneNumberField.getText().toString();
+    String phoneNumber = Objects.requireNonNull(mPhoneNumberField.getText()).toString();
     if (TextUtils.isEmpty(phoneNumber)) {
       mPhoneNumberField.setError(null);
       mPhoneNumberFieldTextInput.setError("Invalid phone number.");
@@ -376,10 +381,11 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
         if (!validatePhoneNumber()) {
           return;
         }
-        startPhoneNumberVerification("+91".concat(mPhoneNumberField.getText().toString()));
+        startPhoneNumberVerification("+91".concat(
+            Objects.requireNonNull(mPhoneNumberField.getText()).toString()));
         break;
       case R.id.buttonVerifyPhone:
-        String code = mVerificationField.getText().toString();
+        String code = Objects.requireNonNull(mVerificationField.getText()).toString();
         if (TextUtils.isEmpty(code)) {
           mVerificationField.setError(null);
           mVerificationFieldTextInput.setError("Cannot be empty.");
@@ -389,10 +395,17 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
         verifyPhoneNumberWithCode(mVerificationId, code);
         break;
       case R.id.buttonResend:
-        resendVerificationCode("+91".concat(mPhoneNumberField.getText().toString()), mResendToken);
+        resendVerificationCode(
+            "+91".concat(Objects.requireNonNull(mPhoneNumberField.getText()).toString()),
+            mResendToken);
         break;
       case R.id.signOutButton:
         signOut();
+        break;
+      case R.id.aboutButton:
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("https://www.linkedin.com/in/vishalkumarsinghvi"));
+        view.getContext().startActivity(i);
         break;
     }
   }

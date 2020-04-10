@@ -10,7 +10,7 @@ public class CityDataComparator {
     return num.isEmpty() ? 0 : Integer.parseInt(num);
   }
 
-  public static class ConfirmedSorter implements Comparator<CityModel> {
+  public static class ConfirmedSorter implements Comparator<DistrictData> {
 
     private boolean isConfirmedClicked;
 
@@ -18,38 +18,19 @@ public class CityDataComparator {
       this.isConfirmedClicked = isConfirmedClicked;
     }
 
-    public int compare(CityModel o1, CityModel o2) {
+    public int compare(DistrictData o1, DistrictData o2) {
       if (isConfirmedClicked) {
-        return extractInt(o1.getCityWiseData().getConfirmed()) - extractInt(
-            o2.getCityWiseData().getConfirmed());
+        return extractInt(o1.getConfirmed()) - extractInt(
+            o2.getConfirmed());
       } else {
 
-        return extractInt(o2.getCityWiseData().getConfirmed()) - extractInt(
-            o1.getCityWiseData().getConfirmed());
+        return extractInt(o2.getConfirmed()) - extractInt(
+            o1.getConfirmed());
       }
     }
   }
 
-
-  public static class StateSorter implements Comparator<CityModel> {
-
-    private boolean isStateClicked;
-
-    public StateSorter(boolean isStateClicked) {
-      this.isStateClicked = isStateClicked;
-    }
-
-    public int compare(CityModel o1, CityModel o2) {
-      if (isStateClicked) {
-        return o1.getState().compareTo(o2.getState());
-      } else {
-
-        return o2.getState().compareTo(o1.getState());
-      }
-    }
-  }
-
-  public static class CitySorter implements Comparator<CityModel> {
+  public static class CitySorter implements Comparator<DistrictData> {
 
     private boolean isCityClicked;
 
@@ -57,7 +38,7 @@ public class CityDataComparator {
       this.isCityClicked = isCityClicked;
     }
 
-    public int compare(CityModel o1, CityModel o2) {
+    public int compare(DistrictData o1, DistrictData o2) {
       if (isCityClicked) {
         return o1.getDistrict().compareTo(o2.getDistrict());
       } else {

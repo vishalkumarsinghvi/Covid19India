@@ -15,7 +15,6 @@ import com.google.android.material.chip.Chip;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.Covid19ViewPagerAdapter;
 import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
-import com.vishal.covid19india.view.fragment.covid19.child.CityWiseFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.DataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.RawDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment;
@@ -46,7 +45,6 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     Chip chipStateWiseData = root.findViewById(R.id.chip_state_wise_data);
     Chip chipUpdateTimeline = root.findViewById(R.id.chip_update_timeline_data);
     Chip chipRawData = root.findViewById(R.id.chip_raw_data);
-    Chip chipCityWiseData = root.findViewById(R.id.chip_city_wise_data);
     Chip chipData = root.findViewById(R.id.chip_data);
     viewPager = root.findViewById(R.id.view_pager);
     Covid19ViewPagerAdapter covid19Adapter = new Covid19ViewPagerAdapter(
@@ -54,7 +52,6 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     covid19Adapter.addFragment(new StateWiseFragment());
     covid19Adapter.addFragment(new UpdateTimelineFragment());
     covid19Adapter.addFragment(new RawDataFragment());
-    covid19Adapter.addFragment(new CityWiseFragment());
     covid19Adapter.addFragment(new DataFragment());
     viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
     viewPager.setUserInputEnabled(false);
@@ -63,7 +60,6 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     chipStateWiseData.setOnClickListener(this);
     chipUpdateTimeline.setOnClickListener(this);
     chipRawData.setOnClickListener(this);
-    chipCityWiseData.setOnClickListener(this);
     chipData.setOnClickListener(this);
     getFactoidsData();
   }
@@ -104,11 +100,8 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
       case R.id.chip_raw_data:
         position = 2;
         break;
-      case R.id.chip_city_wise_data:
-        position = 3;
-        break;
       case R.id.chip_data:
-        position = 4;
+        position = 3;
         break;
       default:
     }

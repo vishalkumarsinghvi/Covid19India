@@ -1,12 +1,13 @@
 package com.vishal.covid19india.model.Covid19;
 
+import com.google.gson.JsonObject;
+import com.vishal.covid19india.model.Covid19.City.NewCityModel;
 import com.vishal.covid19india.model.Covid19.Data.Data;
 import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
 import com.vishal.covid19india.model.Covid19.RawData.RawData;
 import com.vishal.covid19india.model.Covid19.TravelHistory.TravelHistory;
 import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
 import com.vishal.covid19india.retrofit.RetrofitClientInstance;
-import com.google.gson.JsonObject;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -36,6 +37,9 @@ public class Covid19Service {
 
     @GET("state_district_wise.json")
     Call<JsonObject> getStateDistrictWise();
+
+    @GET("v2/state_district_wise.json")
+    Call<List<NewCityModel>> getNewCityDistrictWise();
 
     @GET("website_data.json")
     Call<FactoidsModel> getFactoidsList();

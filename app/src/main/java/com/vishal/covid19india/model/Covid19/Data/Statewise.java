@@ -1,10 +1,28 @@
 package com.vishal.covid19india.model.Covid19.Data;
 
 import com.google.gson.annotations.SerializedName;
+import com.vishal.covid19india.model.Covid19.City.DistrictData;
 import java.io.Serializable;
+import java.util.ArrayList;
 import org.jetbrains.annotations.NotNull;
 
 public class Statewise implements Serializable {
+
+  public boolean isVisible = true;
+  public boolean isCityClicked = true;
+  public boolean isConfirmedClicked = true;
+
+  @SerializedName("deltarecovered")
+  private String deltarecovered = "";
+
+  @SerializedName("deltadeaths")
+  private String deltadeaths = "";
+
+  @SerializedName("deltaconfirmed")
+  private String deltaconfirmed = "";
+
+  @SerializedName("statecode")
+  private String statecode = "";
 
   @SerializedName("recovered")
   private String recovered = "";
@@ -23,6 +41,17 @@ public class Statewise implements Serializable {
 
   @SerializedName("lastupdatedtime")
   private String lastupdatedtime = "";
+
+  private ArrayList<DistrictData> districtDataList;
+
+  public ArrayList<DistrictData> getDistrictDataList() {
+    return districtDataList;
+  }
+
+  public void setDistrictDataList(
+      ArrayList<DistrictData> districtDataList) {
+    this.districtDataList = districtDataList;
+  }
 
   public String getRecovered() {
     return recovered;
