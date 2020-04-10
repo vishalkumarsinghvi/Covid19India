@@ -8,6 +8,51 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:829809486761:android:32ac6dcd3c4418ea9872b8",
+        "android_client_info": {
+          "package_name": "com.osiya.finaceservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829809486761-88791fh4iqlmo9kha0l8hoggg79oh8gk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.osiya.finaceservice",
+            "certificate_hash": "7500dbd0558a85351620c977e08baee0a489dd8d"
+          }
+        },
+        {
+          "client_id": "829809486761-c8o0kb13edvo0gih4f4u963hjahlls7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.osiya.finaceservice",
+            "certificate_hash": "ba6f56be04474f0f4902c5cd794e72fb37d2c6c9"
+          }
+        },
+        {
+          "client_id": "829809486761-t83jngj6d1lpmj2521mvoa7kt26qsejt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyzwKDe9y-D4AUU0TL_qR1czmdVoBAK9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829809486761-t83jngj6d1lpmj2521mvoa7kt26qsejt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:829809486761:android:14e2f5efac53c923",
         "android_client_info": {
           "package_name": "com.pioctave.sure"
@@ -72,6 +117,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "829809486761-v6esaetsk95j74coo4l8ku3ennbn2ugd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.covid19india",
+            "certificate_hash": "7500dbd0558a85351620c977e08baee0a489dd8d"
+          }
+        },
         {
           "client_id": "829809486761-8gnnlclvdf3bnh6jt1j2vc9p86h3rgsq.apps.googleusercontent.com",
           "client_type": 1,
