@@ -18,6 +18,7 @@ import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
 import com.vishal.covid19india.view.fragment.covid19.child.DataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.RawDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment;
+import com.vishal.covid19india.view.fragment.covid19.child.TestedDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.UpdateTimelineFragment;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
@@ -44,6 +45,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     tvHeader.setSingleLine(true);
     Chip chipStateWiseData = root.findViewById(R.id.chip_state_wise_data);
     Chip chipUpdateTimeline = root.findViewById(R.id.chip_update_timeline_data);
+    Chip chipTestedData = root.findViewById(R.id.chip_test_data);
     Chip chipRawData = root.findViewById(R.id.chip_raw_data);
     Chip chipData = root.findViewById(R.id.chip_data);
     viewPager = root.findViewById(R.id.view_pager);
@@ -51,6 +53,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
         Objects.requireNonNull(getActivity()).getSupportFragmentManager(), getLifecycle());
     covid19Adapter.addFragment(new StateWiseFragment());
     covid19Adapter.addFragment(new UpdateTimelineFragment());
+    covid19Adapter.addFragment(new TestedDataFragment());
     covid19Adapter.addFragment(new RawDataFragment());
     covid19Adapter.addFragment(new DataFragment());
     viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
@@ -59,6 +62,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     viewPager.setOffscreenPageLimit(5);
     chipStateWiseData.setOnClickListener(this);
     chipUpdateTimeline.setOnClickListener(this);
+    chipTestedData.setOnClickListener(this);
     chipRawData.setOnClickListener(this);
     chipData.setOnClickListener(this);
     getFactoidsData();
@@ -97,11 +101,14 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
       case R.id.chip_update_timeline_data:
         position = 1;
         break;
-      case R.id.chip_raw_data:
+      case R.id.chip_test_data:
         position = 2;
         break;
-      case R.id.chip_data:
+      case R.id.chip_raw_data:
         position = 3;
+        break;
+      case R.id.chip_data:
+        position = 4;
         break;
       default:
     }

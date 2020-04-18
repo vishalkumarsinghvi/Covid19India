@@ -53,6 +53,22 @@ public class Statewise implements Serializable {
     this.districtDataList = districtDataList;
   }
 
+  public String getDeltarecovered() {
+    return "Recovered\n" + "[+" + deltarecovered + "]\n" + recovered;
+  }
+
+  public String getDeltadeaths() {
+    return "Deceased\n" + "[+" + deltadeaths + "]\n" + deaths;
+  }
+
+  public String getDeltaconfirmed() {
+    return "Confirmed\n" + "[+" + deltaconfirmed + "]\n" + confirmed;
+  }
+
+  public String getDeltaActive() {
+    return "Active\n\n" + active;
+  }
+
   public String getRecovered() {
     return recovered;
   }

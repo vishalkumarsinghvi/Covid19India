@@ -55,13 +55,14 @@
         app:chipBackgroundColor="@color/bg_chip_state_list" />
 
       <com.google.android.material.chip.Chip
-        android:id="@+id/chip_raw_data"
+        android:id="@+id/chip_test_data"
         style="@style/Widget.MaterialComponents.Chip.Choice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/black"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/row_data"
+        android:text="@string/tested_data"
         android:textColor="@android:color/white"
         app:chipBackgroundColor="@color/bg_chip_state_list" />
 
@@ -73,6 +74,17 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/data"
+        android:textColor="@android:color/white"
+        app:chipBackgroundColor="@color/bg_chip_state_list" />
+
+      <com.google.android.material.chip.Chip
+        android:id="@+id/chip_raw_data"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/row_data"
         android:textColor="@android:color/white"
         app:chipBackgroundColor="@color/bg_chip_state_list" />
 

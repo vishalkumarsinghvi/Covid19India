@@ -16,9 +16,11 @@
     android:gravity="center"
     android:text="@string/last_update"
     android:textColor="#28a745"
-    android:textSize="16sp" />
+    android:textSize="16sp"
+    android:visibility="gone" />
+
   <LinearLayout
-    android:id="@+id/ll_state_wise_data_today"
+    android:id="@+id/ll_state_wise_test_data"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@id/tv_latest_updated"
@@ -26,63 +28,14 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:orientation="horizontal"
-    android:weightSum="4">
+    android:weightSum="5">
 
     <TextView
-      android:id="@+id/tv_confirmed_today"
+      android:id="@+id/tv_state_test_data"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
       android:layout_weight="1"
-      android:gravity="center"
-      android:textColor="#ff073a"
-      android:textSize="14sp" />
-    <TextView
-      android:id="@+id/tv_recovered_today"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_margin="1dp"
-      android:layout_weight="1"
-      android:gravity="center"
-      android:textColor="#28a745"
-      android:textSize="14sp" />
-    <TextView
-      android:id="@+id/tv_deaths_today"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_margin="1dp"
-      android:layout_weight="1"
-      android:gravity="center"
-      android:textColor="#6c757d"
-      android:textSize="14sp" />
-    <TextView
-      android:id="@+id/tv_active_today"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_margin="1dp"
-      android:layout_weight="1"
-      android:gravity="center"
-      android:textColor="#007bff"
-      android:textSize="14sp" />
-
-  </LinearLayout>
-  <LinearLayout
-    android:id="@+id/ll_state_wise_data"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/ll_state_wise_data_today"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:orientation="horizontal"
-    android:weightSum="6">
-
-    <TextView
-      android:id="@+id/tv_state"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_margin="1dp"
-      android:layout_weight="2"
       android:background="@android:color/darker_gray"
       android:gravity="center"
       android:text="@string/state"
@@ -90,61 +43,61 @@
       android:textSize="14sp" />
 
     <TextView
-      android:id="@+id/tv_confirmed"
+      android:id="@+id/tv_total_test_data"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:background="@android:color/darker_gray"
       android:gravity="center"
-      android:text="@string/cnfmd"
+      android:text="@string/tested"
       android:textColor="@android:color/black"
       android:textSize="14sp" />
     <TextView
-      android:id="@+id/tv_recovered"
+      android:id="@+id/tv_positive_test_data"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
-      android:layout_weight="1"
+      android:layout_weight="0.8"
       android:background="@android:color/darker_gray"
       android:gravity="center"
-      android:text="@string/rcvrd"
+      android:text="@string/ve"
       android:textColor="@android:color/black"
       android:textSize="14sp" />
     <TextView
-      android:id="@+id/tv_deaths"
+      android:id="@+id/tv_negative_test_data"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:background="@android:color/darker_gray"
       android:gravity="center"
-      android:text="@string/dcsd"
+      android:text="@string/minve"
       android:textColor="@android:color/black"
       android:textSize="14sp" />
     <TextView
-      android:id="@+id/tv_active"
+      android:id="@+id/tv_date_test_data"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
-      android:layout_weight="1"
+      android:layout_weight="1.2"
       android:background="@android:color/darker_gray"
       android:gravity="center"
-      android:text="@string/actv"
+      android:text="@string/date"
       android:textColor="@android:color/black"
       android:textSize="14sp" />
 
   </LinearLayout>
   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipe_container_state_wise_data"
+    android:id="@+id/swipe_container_state_wise_test_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/ll_state_wise_data"
+    android:layout_below="@id/ll_state_wise_test_data"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp">
     <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/rv_state_wise_data"
+      android:id="@+id/rv_state_wise_test_data"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

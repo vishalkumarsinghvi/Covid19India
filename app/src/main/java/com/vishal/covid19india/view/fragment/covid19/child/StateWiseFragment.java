@@ -41,6 +41,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
     SwipeRefreshLayout.OnRefreshListener {
 
   private TextView tvState, tvConfirmed, tvActive, tvRecovered, tvDeath;
+  private TextView tvConfirmedToday, tvActiveToday, tvRecoveredToday, tvDeathToday;
   private StateWiseAdapter stateWiseAdapter;
   private ArrayList<Statewise> statewiseArrayList = new ArrayList<>();
   private TextView tvLatestUpdate;
@@ -78,6 +79,10 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
     tvActive = view.findViewById(R.id.tv_active);
     tvRecovered = view.findViewById(R.id.tv_recovered);
     tvDeath = view.findViewById(R.id.tv_deaths);
+    tvConfirmedToday = view.findViewById(R.id.tv_confirmed_today);
+    tvActiveToday = view.findViewById(R.id.tv_active_today);
+    tvRecoveredToday = view.findViewById(R.id.tv_recovered_today);
+    tvDeathToday = view.findViewById(R.id.tv_deaths_today);
     tvState.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvConfirmed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvActive.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
@@ -148,6 +153,10 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
               tvLatestUpdate.setText(response.body().getStatewise().get(0).getLastupdatedtime());
             }
           }
+          tvConfirmedToday.setText(response.body().getStatewise().get(0).getDeltaconfirmed());
+          tvRecoveredToday.setText(response.body().getStatewise().get(0).getDeltarecovered());
+          tvDeathToday.setText(response.body().getStatewise().get(0).getDeltadeaths());
+          tvActiveToday.setText(response.body().getStatewise().get(0).getDeltaActive());
           for (int i = 0; i < response.body().getStatewise().size(); i++) {
             if (!response.body().getStatewise().get(i).getConfirmed().equals("0")) {
               statewiseArrayList.add(response.body().getStatewise().get(i));

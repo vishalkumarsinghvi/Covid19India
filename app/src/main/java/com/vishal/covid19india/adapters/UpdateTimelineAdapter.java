@@ -36,9 +36,10 @@ public class UpdateTimelineAdapter extends RecyclerView.Adapter<UpdateTimelineAd
     holder.tvDate.setText(updateTimelineList.get(position).getTimeShow());
     if (position==0){
       holder.mTimelineView.setMarker(context.getDrawable(R.drawable.ic_marker_inactive));
-    }
-    if (position==1){
+    } else if (position == 1) {
       holder.mTimelineView.setMarker(context.getDrawable(R.drawable.ic_marker_active));
+    } else {
+      holder.mTimelineView.setMarker(context.getDrawable(R.drawable.ic_marker));
     }
 
   }

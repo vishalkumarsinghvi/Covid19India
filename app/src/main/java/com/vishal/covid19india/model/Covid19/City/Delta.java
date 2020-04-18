@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import org.jetbrains.annotations.NotNull;
 
-class Delta implements Serializable {
+public class Delta implements Serializable {
 
   @SerializedName("confirmed")
   private String confirmed;

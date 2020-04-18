@@ -5,6 +5,7 @@ import com.vishal.covid19india.model.Covid19.City.NewCityModel;
 import com.vishal.covid19india.model.Covid19.Data.Data;
 import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
 import com.vishal.covid19india.model.Covid19.RawData.RawData;
+import com.vishal.covid19india.model.Covid19.TestedData.TestedData;
 import com.vishal.covid19india.model.Covid19.TravelHistory.TravelHistory;
 import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
 import com.vishal.covid19india.retrofit.RetrofitClientInstance;
@@ -46,6 +47,9 @@ public class Covid19Service {
 
     @GET("updatelog/log.json")
     Call<List<UpdateTimeline>> getUpdateTimeline();
+
+    @GET("state_test_data.json")
+    Call<TestedData> getTestedData();
   }
 
 }

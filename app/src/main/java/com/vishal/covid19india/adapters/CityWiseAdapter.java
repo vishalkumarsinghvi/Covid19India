@@ -34,8 +34,15 @@ public class CityWiseAdapter extends RecyclerView.Adapter<CityWiseAdapter.ViewHo
     if (cityModelArrayList != null) {
       holder.tvCity
           .setText(cityModelArrayList.get(position).getDistrict());
-      holder.tvConfirmedNumber
-          .setText(cityModelArrayList.get(position).getConfirmed());
+      if (cityModelArrayList.get(position).getDelta().getConfirmed().equals("0")) {
+        holder.tvConfirmedNumber
+            .setText(cityModelArrayList.get(position).getConfirmed());
+      } else {
+        holder.tvConfirmedNumber
+            .setText((cityModelArrayList.get(position).getConfirmed()).concat(
+                "  [ +".concat(cityModelArrayList.get(position).getDelta().getConfirmed())
+                    .concat(" ]")));
+      }
     }
   }
 

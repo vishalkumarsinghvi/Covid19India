@@ -22,7 +22,7 @@
     android:layout_margin="1dp"
     android:layout_weight="1"
     android:background="@android:color/white"
-    android:gravity="center"
+    android:gravity="center_vertical|start"
     android:text="@string/blank"
     android:textSize="14sp"
     android:textStyle="bold" />
