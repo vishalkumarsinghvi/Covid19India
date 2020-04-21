@@ -1,11 +1,17 @@
 package com.vishal.covid19india.view.fragment.covid19.child;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.vishal.covid19india.constants.AppConstants.subscribeToTopic;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +29,7 @@ import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.Deaths
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.RecoveredSorter;
 import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.StateSorter;
 import com.vishal.covid19india.model.Covid19.Data.Statewise;
+import com.vishal.covid19india.utils.AppController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,6 +58,10 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
   private boolean isRecoveredClicked;
   private boolean isActiveClicked;
   private SwipeRefreshLayout mSwipeRefreshLayout;
+  private ImageView ivRing;
+  private boolean ivRingClicked;
+  private SharedPreferences sharedPreferences;
+
 
   public StateWiseFragment() {
   }
@@ -74,6 +85,9 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
   }
 
   private void initUI(View view) {
+    sharedPreferences = Objects.requireNonNull(getActivity()).getApplicationContext()
+        .getSharedPreferences(getActivity().getPackageName(), MODE_PRIVATE);
+    ivRing = view.findViewById(R.id.iv_ring);
     tvState = view.findViewById(R.id.tv_state);
     tvConfirmed = view.findViewById(R.id.tv_confirmed);
     tvActive = view.findViewById(R.id.tv_active);
@@ -93,6 +107,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
     tvActive.setOnClickListener(this);
     tvRecovered.setOnClickListener(this);
     tvDeath.setOnClickListener(this);
+    ivRing.setOnClickListener(this);
     mSwipeRefreshLayout = view.findViewById(R.id.swipe_container_state_wise_data);
     mSwipeRefreshLayout.setOnRefreshListener(this);
     mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -100,6 +115,12 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
         android.R.color.holo_orange_dark,
         android.R.color.holo_blue_dark);
     setUpRawDataRecyclerView(view);
+    ivRingClicked = sharedPreferences.getBoolean(subscribeToTopic, false);
+    if (ivRingClicked) {
+      ivRing.setBackgroundResource(R.drawable.ic_notificaion_on);
+    } else {
+      ivRing.setBackgroundResource(R.drawable.ic_notificaion_off);
+    }
   }
 
   private void setUpRawDataRecyclerView(View view) {
@@ -233,6 +254,25 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
           isDeathClicked = !isDeathClicked;
           Collections
               .sort(statewiseArrayList, new DeathsSorter(isDeathClicked));
+          break;
+        case R.id.iv_ring:
+          AppController appController = new AppController(getActivity());
+          if (ivRingClicked) {
+            ivRingClicked = false;
+            ivRing.setBackgroundResource(R.drawable.ic_notificaion_off);
+            appController.unSubScribeToChannel();
+            Toast.makeText(getActivity(), "Turn off notification for breaking news",
+                Toast.LENGTH_SHORT)
+                .show();
+          } else {
+            ivRingClicked = true;
+            ivRing.setBackgroundResource(R.drawable.ic_notificaion_on);
+            appController.subScribeToChannel();
+            Toast
+                .makeText(getActivity(), "Turn on notification for breaking news",
+                    Toast.LENGTH_SHORT)
+                .show();
+          }
           break;
       }
       statewiseArrayList.add(0, statewises);

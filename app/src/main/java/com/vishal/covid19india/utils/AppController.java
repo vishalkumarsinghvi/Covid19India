@@ -1,12 +1,23 @@
 package com.vishal.covid19india.utils;
 
+import static com.vishal.covid19india.constants.AppConstants.FIRST_TIME_APP_OPEN;
+import static com.vishal.covid19india.constants.AppConstants.REGISTRATION_ID;
+import static com.vishal.covid19india.constants.AppConstants.breakingNewsTopic;
+import static com.vishal.covid19india.constants.AppConstants.subscribeToTopic;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.provider.Settings;
 import android.util.Log;
 import androidx.appcompat.app.AlertDialog;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.vishal.covid19india.BuildConfig;
@@ -24,6 +35,51 @@ public class AppController {
 
   public AppController(Context context) {
     this.context = context;
+  }
+
+
+  @SuppressLint("HardwareIds")
+  public void sendTokenToFirebase() {
+    SharedPreferences sharedPreferences = context.getApplicationContext()
+        .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("token");
+    myRef.child(Settings.Secure.getString(context.getContentResolver(),
+        Settings.Secure.ANDROID_ID))
+        .setValue(sharedPreferences.getString(REGISTRATION_ID, ""));
+//    subScribeToChannel();
+  }
+
+  void firstTimeAppOpen() {
+    SharedPreferences sharedPreferences = context.getApplicationContext()
+        .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean(FIRST_TIME_APP_OPEN, true);
+    editor.commit();
+  }
+
+  boolean getFirstTimeAppOpen() {
+    SharedPreferences sharedPreferences = context.getApplicationContext()
+        .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    return sharedPreferences.getBoolean(FIRST_TIME_APP_OPEN, false);
+  }
+
+  public void subScribeToChannel() {
+    SharedPreferences sharedPreferences = context.getApplicationContext()
+        .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean(subscribeToTopic, true);
+    editor.commit();
+    FirebaseMessaging.getInstance().subscribeToTopic(breakingNewsTopic);
+  }
+
+  public void unSubScribeToChannel() {
+    SharedPreferences sharedPreferences = context.getApplicationContext()
+        .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.putBoolean(subscribeToTopic, false);
+    editor.commit();
+    FirebaseMessaging.getInstance().unsubscribeFromTopic(breakingNewsTopic);
   }
 
   public void firebaseUpdateInit() {

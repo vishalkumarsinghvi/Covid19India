@@ -5,11 +5,19 @@
   android:layout_height="match_parent"
   android:background="@android:color/white"
   tools:context="com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment">
+  <ImageView
+    android:id="@+id/iv_ring"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/ic_notificaion_off"
+    android:contentDescription="@string/desc" />
   <TextView
     android:id="@+id/tv_latest_updated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
+    android:layout_below="@id/iv_ring"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
