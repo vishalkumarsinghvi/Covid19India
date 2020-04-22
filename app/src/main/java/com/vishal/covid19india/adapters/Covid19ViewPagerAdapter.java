@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.vishal.covid19india.view.fragment.covid19.child.DataFragment;
+import com.vishal.covid19india.view.fragment.covid19.child.PrecautionsFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.RawDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.TestedDataFragment;
@@ -34,12 +35,15 @@ public class Covid19ViewPagerAdapter extends FragmentStateAdapter {
         fragment = UpdateTimelineFragment.newInstance();
         break;
       case 2:
-        fragment = TestedDataFragment.newInstance();
+        fragment = PrecautionsFragment.newInstance();
         break;
       case 3:
-        fragment = RawDataFragment.newInstance();
+        fragment = TestedDataFragment.newInstance();
         break;
       case 4:
+        fragment = RawDataFragment.newInstance();
+        break;
+      case 5:
         fragment = DataFragment.newInstance();
         break;
     }

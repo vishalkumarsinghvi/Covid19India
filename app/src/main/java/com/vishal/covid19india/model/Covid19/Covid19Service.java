@@ -8,6 +8,7 @@ import com.vishal.covid19india.model.Covid19.RawData.RawData;
 import com.vishal.covid19india.model.Covid19.TestedData.TestedData;
 import com.vishal.covid19india.model.Covid19.TravelHistory.TravelHistory;
 import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
+import com.vishal.covid19india.model.Covid19.precaution.Precautions;
 import com.vishal.covid19india.retrofit.RetrofitClientInstance;
 import java.util.List;
 import retrofit2.Call;
@@ -17,12 +18,19 @@ public class Covid19Service {
 
   private static final Covid19Api covid19Api = RetrofitClientInstance.getRetrofitCovid19()
       .create(Covid19Api.class);
+  private static final Covid19Api covid19GithubApi = RetrofitClientInstance
+      .getRetrofitGithubCovid19()
+      .create(Covid19Api.class);
 
   public Covid19Service() {
   }
 
   public static Covid19Api getInstanceCovid19() {
     return covid19Api;
+  }
+
+  public static Covid19Api getInstanceGithubCovid19() {
+    return covid19GithubApi;
   }
 
   public interface Covid19Api {
@@ -50,6 +58,9 @@ public class Covid19Service {
 
     @GET("state_test_data.json")
     Call<TestedData> getTestedData();
+
+    @GET("covid19IndiaPrecautions.json")
+    Call<List<Precautions>> getPrecautionsData();
   }
 
 }

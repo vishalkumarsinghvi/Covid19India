@@ -29,3 +29,9 @@
   @com.google.gson.annotations.SerializedName <fields>;
 }
 -keeppackagenames org.jsoup.nodes
+
+-keep public class com.pierfrancescosoffritti.youtubeplayer.** {
+   public *;
+}
+
+-keepnames class com.pierfrancescosoffritti.youtubeplayer.*

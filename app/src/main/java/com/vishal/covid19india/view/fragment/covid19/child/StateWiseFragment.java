@@ -174,10 +174,10 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
               tvLatestUpdate.setText(response.body().getStatewise().get(0).getLastupdatedtime());
             }
           }
-          tvConfirmedToday.setText(response.body().getStatewise().get(0).getDeltaconfirmed());
-          tvRecoveredToday.setText(response.body().getStatewise().get(0).getDeltarecovered());
-          tvDeathToday.setText(response.body().getStatewise().get(0).getDeltadeaths());
-          tvActiveToday.setText(response.body().getStatewise().get(0).getDeltaActive());
+          tvConfirmedToday.setText(response.body().getStatewise().get(0).getTotalDeltaconfirmed());
+          tvRecoveredToday.setText(response.body().getStatewise().get(0).getTotalDeltarecovered());
+          tvDeathToday.setText(response.body().getStatewise().get(0).getTotalDeltadeaths());
+          tvActiveToday.setText(response.body().getStatewise().get(0).getTotalDeltaActive());
           for (int i = 0; i < response.body().getStatewise().size(); i++) {
             if (!response.body().getStatewise().get(i).getConfirmed().equals("0")) {
               statewiseArrayList.add(response.body().getStatewise().get(i));

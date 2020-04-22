@@ -42,12 +42,27 @@ public class StateWiseAdapter extends RecyclerView.Adapter<StateWiseAdapter.View
     if (statewiseArrayList != null) {
       Statewise item = statewiseArrayList.get(position);
       holder.tvTotal.setText(item.getState());
-      holder.tvConfirmedNumber
-          .setText(item.getConfirmed());
-      holder.tvRecoveredNumber
-          .setText(item.getRecovered());
-      holder.tvDeathNumber
-          .setText(item.getDeaths());
+      if (item.getDeltaconfirmed().equals("0")) {
+        holder.tvConfirmedNumber
+            .setText(item.getConfirmed());
+      } else {
+        holder.tvConfirmedNumber
+            .setText((item.getConfirmed()).concat("\n" + "▲ ").concat(item.getDeltaconfirmed()));
+      }
+      if (item.getDeltarecovered().equals("0")) {
+        holder.tvRecoveredNumber
+            .setText(item.getRecovered());
+      } else {
+        holder.tvRecoveredNumber
+            .setText((item.getRecovered()).concat("\n" + "▲ ").concat(item.getDeltarecovered()));
+      }
+      if (item.getDeltadeaths().equals("0")) {
+        holder.tvDeathNumber
+            .setText(item.getDeaths());
+      } else {
+        holder.tvDeathNumber
+            .setText((item.getDeaths()).concat("\n" + "▲ ").concat(item.getDeltadeaths()));
+      }
       holder.tvActiveNumber
           .setText(item.getActive());
       if (item.getDistrictDataList() != null) {

@@ -3,7 +3,7 @@
   <string name="title_activity_home">HomeActivity</string>
   <string name="title_my_account">My Account</string>
   <string name="title_news">Covid19 News</string>
-  <string name="title_covid_19">Covid19</string>
+  <string name="title_covid_19">Tracker</string>
   <string name="splashlogo">splashLogo</string>
   <string name="background_mode">Background Mode</string>
   <string name="iv_back">iv_back</string>
@@ -80,4 +80,7 @@
   <string name="ve">+ ve</string>
   <string name="minve">- ve</string>
   <string name="date">Date</string>
+  <string name="precautions">Precautions</string>
+  <string name="up_side_arrow">"&#x2B06;"></string>
+  <string name="down_side_arrow">↓></string>
 </resources>

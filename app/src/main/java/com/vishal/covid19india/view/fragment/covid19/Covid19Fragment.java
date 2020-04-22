@@ -45,6 +45,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     tvHeader.setSingleLine(true);
     Chip chipStateWiseData = root.findViewById(R.id.chip_state_wise_data);
     Chip chipUpdateTimeline = root.findViewById(R.id.chip_update_timeline_data);
+    Chip chipPrecautions = root.findViewById(R.id.chip_precautions_data);
     Chip chipTestedData = root.findViewById(R.id.chip_test_data);
     Chip chipRawData = root.findViewById(R.id.chip_raw_data);
     Chip chipData = root.findViewById(R.id.chip_data);
@@ -53,15 +54,17 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
         Objects.requireNonNull(getActivity()).getSupportFragmentManager(), getLifecycle());
     covid19Adapter.addFragment(new StateWiseFragment());
     covid19Adapter.addFragment(new UpdateTimelineFragment());
+    covid19Adapter.addFragment(new UpdateTimelineFragment());
     covid19Adapter.addFragment(new TestedDataFragment());
     covid19Adapter.addFragment(new RawDataFragment());
     covid19Adapter.addFragment(new DataFragment());
     viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
     viewPager.setUserInputEnabled(false);
     viewPager.setAdapter(covid19Adapter);
-    viewPager.setOffscreenPageLimit(5);
+    viewPager.setOffscreenPageLimit(6);
     chipStateWiseData.setOnClickListener(this);
     chipUpdateTimeline.setOnClickListener(this);
+    chipPrecautions.setOnClickListener(this);
     chipTestedData.setOnClickListener(this);
     chipRawData.setOnClickListener(this);
     chipData.setOnClickListener(this);
@@ -101,14 +104,17 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
       case R.id.chip_update_timeline_data:
         position = 1;
         break;
-      case R.id.chip_test_data:
+      case R.id.chip_precautions_data:
         position = 2;
         break;
-      case R.id.chip_raw_data:
+      case R.id.chip_test_data:
         position = 3;
         break;
-      case R.id.chip_data:
+      case R.id.chip_raw_data:
         position = 4;
+        break;
+      case R.id.chip_data:
+        position = 5;
         break;
       default:
     }

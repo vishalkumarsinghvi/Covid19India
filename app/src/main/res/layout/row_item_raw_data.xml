@@ -4,56 +4,63 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_weight="5"
-  android:orientation="horizontal">
+  android:background="@android:color/white"
+  android:orientation="horizontal"
+  android:paddingTop="10dp"
+  android:paddingBottom="10dp">
   <ImageView
     android:id="@+id/iv_patient"
     android:layout_width="0dp"
     android:layout_height="40dp"
-    android:layout_weight="1"
     android:layout_margin="1dp"
+    android:layout_weight="1"
     android:contentDescription="@string/desc" />
   <TextView
     android:id="@+id/tv_patient_number"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_margin="1dp"
     android:layout_weight="1"
     android:background="@android:color/white"
     android:gravity="center"
-    android:layout_margin="1dp"
     android:text="@string/number"
-    android:textSize="14sp"
+    android:textColor="@android:color/black"
+    android:textSize="12sp"
     android:textStyle="bold" />
   <TextView
     android:id="@+id/tv_patient_current"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_margin="1dp"
     android:layout_weight="1"
     android:background="@android:color/white"
     android:gravity="center"
-    android:layout_margin="1dp"
     android:text="@string/current"
-    android:textSize="14sp"
+    android:textColor="@android:color/black"
+    android:textSize="12sp"
     android:textStyle="bold" />
   <TextView
     android:id="@+id/tv_patient_age"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_margin="1dp"
     android:layout_weight="1"
     android:background="@android:color/white"
     android:gravity="center"
     android:text="@string/age"
-    android:layout_margin="1dp"
-    android:textSize="14sp"
+    android:textColor="@android:color/black"
+    android:textSize="12sp"
     android:textStyle="bold" />
   <TextView
     android:id="@+id/tv_patient_city"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_margin="1dp"
     android:layout_weight="1"
     android:background="@android:color/white"
     android:gravity="center"
-    android:layout_margin="1dp"
     android:text="@string/city"
-    android:textSize="14sp"
+    android:textColor="@android:color/black"
+    android:textSize="12sp"
     android:textStyle="bold" />
 </LinearLayout>

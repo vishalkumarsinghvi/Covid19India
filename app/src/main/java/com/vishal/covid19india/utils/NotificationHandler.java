@@ -56,7 +56,7 @@ public class NotificationHandler {
     Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context,
         channelId)
-        .setSmallIcon(R.drawable.ic_covid_19)
+        .setSmallIcon(R.drawable.ic_covid19)
         .setContentTitle(title)
         .setAutoCancel(true)
         .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
@@ -129,7 +129,7 @@ public class NotificationHandler {
       notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
     }
 
-    notificationBuilder.setSmallIcon(R.drawable.ic_covid_19);
+    notificationBuilder.setSmallIcon(R.drawable.ic_covid19);
     notificationBuilder.setContentTitle(title);
     notificationBuilder.setAutoCancel(true);
     notificationBuilder.setContentText(message);
@@ -198,7 +198,7 @@ public class NotificationHandler {
           channelId);
       notificationBuilder.setContentIntent(pendingIntent);
       notificationBuilder.setContentTitle(title);
-      notificationBuilder.setSmallIcon(R.drawable.ic_covid_19);
+      notificationBuilder.setSmallIcon(R.drawable.ic_covid19);
       notificationBuilder.setLargeIcon(result);
       notificationBuilder.setSound(defaultSoundUri);
       notificationBuilder.setAutoCancel(true);

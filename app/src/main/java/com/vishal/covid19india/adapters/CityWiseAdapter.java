@@ -40,8 +40,7 @@ public class CityWiseAdapter extends RecyclerView.Adapter<CityWiseAdapter.ViewHo
       } else {
         holder.tvConfirmedNumber
             .setText((cityModelArrayList.get(position).getConfirmed()).concat(
-                "  [ +".concat(cityModelArrayList.get(position).getDelta().getConfirmed())
-                    .concat(" ]")));
+                "\n" + "▲ ".concat(cityModelArrayList.get(position).getDelta().getConfirmed())));
       }
     }
   }

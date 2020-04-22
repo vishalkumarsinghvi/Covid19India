@@ -3,7 +3,7 @@
 
   <item
     android:id="@+id/navigation_covid_19"
-    android:icon="@drawable/ic_covid_19"
+    android:icon="@drawable/ic_covid19"
     android:title="@string/title_covid_19" />
 
   <item

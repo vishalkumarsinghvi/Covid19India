@@ -23,7 +23,7 @@
     android:layout_marginRight="8dp"
     android:gravity="center"
     android:text="@string/last_update"
-    android:textColor="#28a745"
+    android:textColor="@color/green"
     android:textSize="16sp" />
   <LinearLayout
     android:id="@+id/ll_state_wise_data_today"
@@ -43,7 +43,7 @@
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:gravity="center"
-      android:textColor="#ff073a"
+      android:textColor="@color/red"
       android:textSize="14sp" />
     <TextView
       android:id="@+id/tv_recovered_today"
@@ -52,7 +52,7 @@
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:gravity="center"
-      android:textColor="#28a745"
+      android:textColor="@color/green"
       android:textSize="14sp" />
     <TextView
       android:id="@+id/tv_deaths_today"
@@ -61,7 +61,7 @@
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:gravity="center"
-      android:textColor="#6c757d"
+      android:textColor="@color/grey"
       android:textSize="14sp" />
     <TextView
       android:id="@+id/tv_active_today"
@@ -70,7 +70,7 @@
       android:layout_margin="1dp"
       android:layout_weight="1"
       android:gravity="center"
-      android:textColor="#007bff"
+      android:textColor="@color/blue"
       android:textSize="14sp" />
 
   </LinearLayout>

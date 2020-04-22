@@ -41,8 +41,19 @@ public class Statewise implements Serializable {
 
   @SerializedName("lastupdatedtime")
   private String lastupdatedtime = "";
-
   private ArrayList<DistrictData> districtDataList;
+
+  public String getDeltarecovered() {
+    return deltarecovered;
+  }
+
+  public String getDeltadeaths() {
+    return deltadeaths;
+  }
+
+  public String getDeltaconfirmed() {
+    return deltaconfirmed;
+  }
 
   public ArrayList<DistrictData> getDistrictDataList() {
     return districtDataList;
@@ -53,19 +64,19 @@ public class Statewise implements Serializable {
     this.districtDataList = districtDataList;
   }
 
-  public String getDeltarecovered() {
+  public String getTotalDeltarecovered() {
     return "Recovered\n" + "[+" + deltarecovered + "]\n" + recovered;
   }
 
-  public String getDeltadeaths() {
+  public String getTotalDeltadeaths() {
     return "Deceased\n" + "[+" + deltadeaths + "]\n" + deaths;
   }
 
-  public String getDeltaconfirmed() {
+  public String getTotalDeltaconfirmed() {
     return "Confirmed\n" + "[+" + deltaconfirmed + "]\n" + confirmed;
   }
 
-  public String getDeltaActive() {
+  public String getTotalDeltaActive() {
     return "Active\n\n" + active;
   }
 
