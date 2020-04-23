@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 
   private void setData() {
     Glide.with(this)
-        .load(R.drawable.logo).into(ivLogo);
+        .load(R.drawable.logo_transparent).into(ivLogo);
     new Thread(() -> {
       setProgressStatus();
       openMainActivity();
@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
       progressStatus++;
       handler.post(() -> progressBar.setProgress(progressStatus));
       try {
-        Thread.sleep(10);
+        Thread.sleep(20);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.github.vipulasri.timelineview.TimelineView;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
+import com.vishal.covid19india.model.covid19.updateTimeline.UpdateTimeline;
 import java.util.ArrayList;
 
 public class UpdateTimelineAdapter extends RecyclerView.Adapter<UpdateTimelineAdapter.ViewHolder> {

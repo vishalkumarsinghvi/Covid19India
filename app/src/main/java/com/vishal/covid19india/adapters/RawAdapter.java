@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
+import com.vishal.covid19india.model.covid19.rawData.Raw_data;
 import com.vishal.covid19india.view.activity.RawDataPatientDetailsActivity;
 import java.util.ArrayList;
 

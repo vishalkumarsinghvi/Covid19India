@@ -13,7 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.PrecautionsAdapter;
-import com.vishal.covid19india.model.Covid19.precaution.Precautions;
+import com.vishal.covid19india.model.covid19.precaution.Precautions;
 import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;

@@ -19,16 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.StateWiseAdapter;
-import com.vishal.covid19india.model.Covid19.City.CityDataComparator;
-import com.vishal.covid19india.model.Covid19.City.NewCityModel;
-import com.vishal.covid19india.model.Covid19.Covid19Service;
-import com.vishal.covid19india.model.Covid19.Data.Data;
-import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ActiveSorter;
-import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.ConfirmedSorter;
-import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.DeathsSorter;
-import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.RecoveredSorter;
-import com.vishal.covid19india.model.Covid19.Data.StateWiseDataComparator.StateSorter;
-import com.vishal.covid19india.model.Covid19.Data.Statewise;
+import com.vishal.covid19india.model.covid19.Covid19Service;
+import com.vishal.covid19india.model.covid19.city.CityDataComparator;
+import com.vishal.covid19india.model.covid19.city.NewCityModel;
+import com.vishal.covid19india.model.covid19.data.Data;
+import com.vishal.covid19india.model.covid19.data.StateWiseDataComparator.ActiveSorter;
+import com.vishal.covid19india.model.covid19.data.StateWiseDataComparator.ConfirmedSorter;
+import com.vishal.covid19india.model.covid19.data.StateWiseDataComparator.DeathsSorter;
+import com.vishal.covid19india.model.covid19.data.StateWiseDataComparator.RecoveredSorter;
+import com.vishal.covid19india.model.covid19.data.StateWiseDataComparator.StateSorter;
+import com.vishal.covid19india.model.covid19.data.Statewise;
 import com.vishal.covid19india.utils.AppController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,7 +37,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
@@ -47,7 +46,6 @@ import retrofit2.Response;
 public class StateWiseFragment extends Fragment implements OnClickListener,
     SwipeRefreshLayout.OnRefreshListener {
 
-  private TextView tvState, tvConfirmed, tvActive, tvRecovered, tvDeath;
   private TextView tvConfirmedToday, tvActiveToday, tvRecoveredToday, tvDeathToday;
   private StateWiseAdapter stateWiseAdapter;
   private ArrayList<Statewise> statewiseArrayList = new ArrayList<>();
@@ -60,7 +58,6 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
   private SwipeRefreshLayout mSwipeRefreshLayout;
   private ImageView ivRing;
   private boolean ivRingClicked;
-  private SharedPreferences sharedPreferences;
 
 
   public StateWiseFragment() {
@@ -85,14 +82,14 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
   }
 
   private void initUI(View view) {
-    sharedPreferences = Objects.requireNonNull(getActivity()).getApplicationContext()
-        .getSharedPreferences(getActivity().getPackageName(), MODE_PRIVATE);
+    SharedPreferences sharedPreferences = requireActivity().getApplicationContext()
+        .getSharedPreferences(requireActivity().getPackageName(), MODE_PRIVATE);
     ivRing = view.findViewById(R.id.iv_ring);
-    tvState = view.findViewById(R.id.tv_state);
-    tvConfirmed = view.findViewById(R.id.tv_confirmed);
-    tvActive = view.findViewById(R.id.tv_active);
-    tvRecovered = view.findViewById(R.id.tv_recovered);
-    tvDeath = view.findViewById(R.id.tv_deaths);
+    TextView tvState = view.findViewById(R.id.tv_state);
+    TextView tvConfirmed = view.findViewById(R.id.tv_confirmed);
+    TextView tvActive = view.findViewById(R.id.tv_active);
+    TextView tvRecovered = view.findViewById(R.id.tv_recovered);
+    TextView tvDeath = view.findViewById(R.id.tv_deaths);
     tvConfirmedToday = view.findViewById(R.id.tv_confirmed_today);
     tvActiveToday = view.findViewById(R.id.tv_active_today);
     tvRecoveredToday = view.findViewById(R.id.tv_recovered_today);
@@ -131,7 +128,7 @@ public class StateWiseFragment extends Fragment implements OnClickListener,
         .setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
     rvStateWiseData.setHasFixedSize(true);
     rvStateWiseData.addItemDecoration(
-        new DividerItemDecoration(Objects.requireNonNull(getActivity()),
+        new DividerItemDecoration(requireActivity(),
             DividerItemDecoration.VERTICAL));
     rvStateWiseData.setAdapter(stateWiseAdapter);
   }

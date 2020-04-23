@@ -10,18 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.glide.slider.library.SliderLayout;
 import com.glide.slider.library.SliderLayout.Transformer;
 import com.glide.slider.library.animations.DescriptionAnimation;
-import com.glide.slider.library.slidertypes.BaseSliderView;
-import com.glide.slider.library.slidertypes.BaseSliderView.OnSliderClickListener;
+import com.glide.slider.library.indicators.PagerIndicator;
 import com.glide.slider.library.slidertypes.TextSliderView;
-import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.precaution.Precautions;
+import com.vishal.covid19india.model.covid19.precaution.Precautions;
 import com.vishal.covid19india.view.fragment.covid19.child.PrecautionsFragment;
 import java.util.ArrayList;
 
@@ -103,10 +103,6 @@ public class PrecautionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     return Type;
   }
 
-  @Override
-  public void onViewRecycled(@NonNull ViewHolder holder) {
-    super.onViewRecycled(holder);
-  }
 
   class ImageViewHolder extends RecyclerView.ViewHolder {
 
@@ -146,50 +142,41 @@ public class PrecautionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
   class VideoViewHolder extends RecyclerView.ViewHolder {
 
     private YouTubePlayerView youTubePlayerView;
+    private TextView txtTitleVideo;
 
     VideoViewHolder(@NonNull View itemView) {
       super(itemView);
+      txtTitleVideo = itemView.findViewById(R.id.tv_title_precautions_video);
       youTubePlayerView = itemView.findViewById(R.id.youtube_player_view_precautions);
-
-
+      precautionsFragment.getLifecycle().addObserver(youTubePlayerView);
     }
 
     private void setDetails(Precautions precautions) {
-//      youTubePlayerView.initialize(new YouTubePlayerInitListener() {
-//        @Override
-//        public void onInitSuccess(final YouTubePlayer initializedYouTubePlayer) {
-//          initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
-//            @Override
-//            public void onReady() {
-//              String videoId = precautions.getData().get(0);
-//              initializedYouTubePlayer.cueVideo(videoId, 0);
-//            }
-//          });
-//        }
-//      }, true);
-    }
-
-    private String getHtmlCode(String url) {
-      return
-          "<iframe width=\"1140\" height=\"641\" src=\"https://www.youtube.com/embed/wh-sRmTWGTw\" "
-              + "frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\""
-              + " allowfullscreen></iframe>";
+      txtTitleVideo.setText(precautions.getTitle());
+      youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+        @Override
+        public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+          String videoId = precautions.getData().get(0);
+          youTubePlayer.cueVideo(videoId, 0f);
+        }
+      });
     }
   }
 
   class SliderViewHolder extends RecyclerView.ViewHolder {
 
     private SliderLayout mDemoSlider;
+    private TextView txtTitleSlider;
 
     SliderViewHolder(@NonNull View itemView) {
       super(itemView);
+      txtTitleSlider = itemView.findViewById(R.id.tv_title_precautions_slider);
       mDemoSlider = itemView.findViewById(R.id.slider_precautions);
     }
 
 
     private void setDetails(Precautions precautions) {
-      RequestOptions requestOptions = new RequestOptions();
-      requestOptions.centerCrop();
+      txtTitleSlider.setText(precautions.getTitle());
       mDemoSlider.removeAllSliders();
       for (int i = 0; i < precautions.getData().size(); i++) {
         TextSliderView sliderView = new TextSliderView(context);
@@ -198,15 +185,11 @@ public class PrecautionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         sliderView
             .image(precautions.getData().get(i))
             .description(precautions.getDataTitle().get(i))
-            .setRequestOption(requestOptions)
+            .setRequestOption(new RequestOptions().fitCenter())
             .setProgressBarVisible(true)
-            .setOnSliderClickListener(new OnSliderClickListener() {
-              @Override
-              public void onSliderClick(BaseSliderView slider) {
-                Toast.makeText(context, slider.getBundle().getString("extra") + "",
-                    Toast.LENGTH_SHORT).show();
-              }
-            });
+            .setOnSliderClickListener(
+                slider -> Toast.makeText(context, slider.getBundle().getString("extra") + "",
+                    Toast.LENGTH_SHORT).show());
         //add your extra information
         sliderView.bundle(new Bundle());
         sliderView.getBundle().putString("extra", precautions.getDataTitle().get(i));
@@ -216,7 +199,8 @@ public class PrecautionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
       // set Slider Transition Animation
       // mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
       mDemoSlider.setPresetTransformer(Transformer.Stack);
-      mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+      mDemoSlider.setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
+//      mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
       mDemoSlider.setCustomAnimation(new DescriptionAnimation());
       mDemoSlider.setDuration(3000);
       mDemoSlider.stopCyclingWhenTouch(true);

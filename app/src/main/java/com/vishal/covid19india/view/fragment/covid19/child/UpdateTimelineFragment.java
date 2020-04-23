@@ -12,13 +12,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.UpdateTimelineAdapter;
-import com.vishal.covid19india.model.Covid19.UpdateTimeline.UpdateTimeline;
+import com.vishal.covid19india.model.covid19.updateTimeline.UpdateTimeline;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
@@ -129,7 +130,7 @@ public class UpdateTimelineFragment extends Fragment implements OnRefreshListene
 
   private void setHeaderDate() {
     Date c = new Date();
-    SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy");
+    SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
     String formattedDate = df.format(c);
     tvLatestUpdateTimeline.setText(formattedDate);
   }

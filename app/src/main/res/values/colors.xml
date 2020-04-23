@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#000000</color>
-  <color name="colorPrimaryDark">#000000</color>
-  <color name="colorAccent">#000000</color>
-  <color name="chip_selected">#1CB0F3</color>
-  <color name="chip_unselected">#E2E2E2</color>
-  <color name="logo_color">#c62727</color>
-  <color name="grey_100">#c62727</color>
+  <color name="colorPrimary">@color/blue</color>
+  <color name="colorPrimaryDark">@color/blue</color>
+  <color name="colorAccent">@color/blue</color>
+  <color name="chip_selected">@color/blue</color>
+  <color name="chip_unselected">@android:color/black</color>
+  <color name="logo_color">@color/blue</color>
   <color name="green">#28a745</color>
   <color name="red">#ff073a</color>
   <color name="grey">#6c757d</color>
   <color name="blue">#007bff</color>
   <color name="transparent">@android:color/transparent</color>
+  <color name="glide_slider_background_color">#FFFFFF</color>
+  <color name="glide_slider_indicator_color">#FFFFFF</color>
+  <color name="glide_slider_description_color">#FFFFFF</color>
+  <color name="glide_slider_description_background_color">@android:color/black</color>
 </resources>

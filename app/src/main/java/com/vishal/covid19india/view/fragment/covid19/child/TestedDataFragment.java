@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.TestedDataAdapter;
-import com.vishal.covid19india.model.Covid19.TestedData.States_tested_data;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedData;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedDataComparator.DateSorter;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedDataComparator.NegativeSorter;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedDataComparator.PositiveSorter;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedDataComparator.StateSorter;
-import com.vishal.covid19india.model.Covid19.TestedData.TestedDataComparator.TotalTestedSorter;
+import com.vishal.covid19india.model.covid19.testedData.States_tested_data;
+import com.vishal.covid19india.model.covid19.testedData.TestedData;
+import com.vishal.covid19india.model.covid19.testedData.TestedDataComparator.DateSorter;
+import com.vishal.covid19india.model.covid19.testedData.TestedDataComparator.NegativeSorter;
+import com.vishal.covid19india.model.covid19.testedData.TestedDataComparator.PositiveSorter;
+import com.vishal.covid19india.model.covid19.testedData.TestedDataComparator.StateSorter;
+import com.vishal.covid19india.model.covid19.testedData.TestedDataComparator.TotalTestedSorter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,10 +30,8 @@ import retrofit2.Response;
 public class TestedDataFragment extends Fragment implements OnClickListener,
     SwipeRefreshLayout.OnRefreshListener {
 
-  private TextView tvStateTestData, tvTotalTestedData, tvPositiveTestData, tvNegativeTestData, tvDateTestData;
   private TestedDataAdapter testedDataAdapter;
   private ArrayList<States_tested_data> testedDataArray = new ArrayList<>();
-  private TextView tvLatestUpdateTestData;
   private boolean isStateClickedTestData;
   private boolean isTotalTestedClickedTestData;
   private boolean isPositiveClickedTestData;
@@ -64,11 +61,11 @@ public class TestedDataFragment extends Fragment implements OnClickListener,
   }
 
   private void initUI(View view) {
-    tvStateTestData = view.findViewById(R.id.tv_state_test_data);
-    tvTotalTestedData = view.findViewById(R.id.tv_total_test_data);
-    tvPositiveTestData = view.findViewById(R.id.tv_positive_test_data);
-    tvNegativeTestData = view.findViewById(R.id.tv_negative_test_data);
-    tvDateTestData = view.findViewById(R.id.tv_date_test_data);
+    TextView tvStateTestData = view.findViewById(R.id.tv_state_test_data);
+    TextView tvTotalTestedData = view.findViewById(R.id.tv_total_test_data);
+    TextView tvPositiveTestData = view.findViewById(R.id.tv_positive_test_data);
+    TextView tvNegativeTestData = view.findViewById(R.id.tv_negative_test_data);
+    TextView tvDateTestData = view.findViewById(R.id.tv_date_test_data);
     tvStateTestData.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvTotalTestedData.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvPositiveTestData.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
@@ -89,14 +86,13 @@ public class TestedDataFragment extends Fragment implements OnClickListener,
   }
 
   private void setUpRawDataRecyclerView(View view) {
-    tvLatestUpdateTestData = view.findViewById(R.id.tv_latest_updated);
     RecyclerView rvStateWiseData = view.findViewById(R.id.rv_state_wise_test_data);
     testedDataAdapter = new TestedDataAdapter(getActivity(), testedDataArray);
     rvStateWiseData
         .setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
     rvStateWiseData.setHasFixedSize(true);
     rvStateWiseData.addItemDecoration(
-        new DividerItemDecoration(Objects.requireNonNull(getActivity()),
+        new DividerItemDecoration(requireActivity(),
             DividerItemDecoration.VERTICAL));
     rvStateWiseData.setAdapter(testedDataAdapter);
   }

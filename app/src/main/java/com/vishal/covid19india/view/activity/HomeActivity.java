@@ -18,7 +18,6 @@ public class HomeActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home);
     BottomNavigationView navView = findViewById(R.id.nav_view);
-    navView.setItemIconTintList(null);
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupWithNavController(navView, navController);
     AppController appController = new AppController(HomeActivity.this);

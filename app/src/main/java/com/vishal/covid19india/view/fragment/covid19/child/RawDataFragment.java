@@ -13,15 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.RawAdapter;
-import com.vishal.covid19india.model.Covid19.RawData.RawData;
-import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
-import com.vishal.covid19india.model.Covid19.RawData.RowDataComparator.AgeSorter;
-import com.vishal.covid19india.model.Covid19.RawData.RowDataComparator.CitySorter;
-import com.vishal.covid19india.model.Covid19.RawData.RowDataComparator.CurrentSorter;
-import com.vishal.covid19india.model.Covid19.RawData.RowDataComparator.PIDSorter;
+import com.vishal.covid19india.model.covid19.rawData.RawData;
+import com.vishal.covid19india.model.covid19.rawData.Raw_data;
+import com.vishal.covid19india.model.covid19.rawData.RowDataComparator.AgeSorter;
+import com.vishal.covid19india.model.covid19.rawData.RowDataComparator.CitySorter;
+import com.vishal.covid19india.model.covid19.rawData.RowDataComparator.CurrentSorter;
+import com.vishal.covid19india.model.covid19.rawData.RowDataComparator.PIDSorter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +30,6 @@ import retrofit2.Response;
 public class RawDataFragment extends Fragment implements OnClickListener,
     SwipeRefreshLayout.OnRefreshListener {
 
-  private TextView tvPid, tvCurrent, tvAge, tvCity;
   private RawAdapter rawAdapter;
   private ArrayList<Raw_data> raw_dataArrayList = new ArrayList<>();
   private boolean isCityClicked;
@@ -62,10 +60,10 @@ public class RawDataFragment extends Fragment implements OnClickListener,
   }
 
   private void initUI(View view) {
-    tvPid = view.findViewById(R.id.tv_patient_id);
-    tvAge = view.findViewById(R.id.tv_patient_age);
-    tvCurrent = view.findViewById(R.id.tv_patient_stage);
-    tvCity = view.findViewById(R.id.tv_patient_city);
+    TextView tvPid = view.findViewById(R.id.tv_patient_id);
+    TextView tvAge = view.findViewById(R.id.tv_patient_age);
+    TextView tvCurrent = view.findViewById(R.id.tv_patient_stage);
+    TextView tvCity = view.findViewById(R.id.tv_patient_city);
     tvPid.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvAge.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
     tvCurrent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.up_down, 0);
@@ -90,7 +88,7 @@ public class RawDataFragment extends Fragment implements OnClickListener,
         .setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
     rvRawData.setHasFixedSize(true);
     rvRawData.addItemDecoration(
-        new DividerItemDecoration(Objects.requireNonNull(getActivity()),
+        new DividerItemDecoration(requireActivity(),
             DividerItemDecoration.VERTICAL));
     rvRawData.setAdapter(rawAdapter);
   }

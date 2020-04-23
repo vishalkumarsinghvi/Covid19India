@@ -181,7 +181,7 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
   }
 
   private void showSnackBar(String text) {
-    Snackbar.make(Objects.requireNonNull(getActivity()).findViewById(android.R.id.content), text,
+    Snackbar.make(requireActivity().findViewById(android.R.id.content), text,
         Snackbar.LENGTH_SHORT).show();
   }
 
@@ -237,7 +237,7 @@ public class MyAccountFragment extends Fragment implements OnClickListener {
 
   private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
     mAuth.signInWithCredential(credential)
-        .addOnCompleteListener(Objects.requireNonNull(getActivity()), task -> {
+        .addOnCompleteListener(requireActivity(), task -> {
           if (task.isSuccessful()) {
             Log.d(TAG, "signInWithCredential:success");
             FirebaseUser user = Objects.requireNonNull(task.getResult()).getUser();

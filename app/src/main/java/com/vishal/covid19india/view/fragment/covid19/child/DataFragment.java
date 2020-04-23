@@ -11,11 +11,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.chip.Chip;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.Data.Data;
+import com.vishal.covid19india.model.covid19.data.Data;
 import com.vishal.covid19india.utils.NetworkUtils;
 import im.dacer.androidcharts.LineView;
 import java.util.ArrayList;
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -103,12 +102,8 @@ public class DataFragment extends Fragment implements OnClickListener {
             }
           }
           setChartTotalData();
-          horizontalScrollView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-              horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-          }, 2000);
+          horizontalScrollView.postDelayed(
+              () -> horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 2000);
         }
       }
 
@@ -142,13 +137,13 @@ public class DataFragment extends Fragment implements OnClickListener {
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.chip_Cumulative_wise_data:
-        if (NetworkUtils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+        if (NetworkUtils.isNetworkAvailable(requireActivity())) {
           setChartTotalData();
         }
 
         break;
       case R.id.chip_daily_data:
-        if (NetworkUtils.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+        if (NetworkUtils.isNetworkAvailable(requireActivity())) {
           setChartDailyData();
         }
         break;

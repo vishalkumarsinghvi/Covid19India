@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.RawData.Raw_data;
+import com.vishal.covid19india.model.covid19.rawData.Raw_data;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import java.util.Objects;
 

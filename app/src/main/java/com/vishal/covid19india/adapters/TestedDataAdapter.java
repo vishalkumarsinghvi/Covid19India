@@ -10,17 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.TestedData.States_tested_data;
+import com.vishal.covid19india.model.covid19.testedData.States_tested_data;
 import java.util.ArrayList;
 
 public class TestedDataAdapter extends RecyclerView.Adapter<TestedDataAdapter.ViewHolder> {
 
   private ArrayList<States_tested_data> states_tested_dataArrayList;
-  private Context context;
 
   public TestedDataAdapter(Context context,
       ArrayList<States_tested_data> states_tested_dataArrayList) {
-    this.context = context;
     this.states_tested_dataArrayList = states_tested_dataArrayList;
   }
 

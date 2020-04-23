@@ -1,5 +1,6 @@
 package com.vishal.covid19india.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -85,6 +86,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     ProgressBar progressBar;
     RelativeLayout mainLayout;
 
+    @SuppressLint("SetJavaScriptEnabled")
     ViewHolder(@NonNull View itemView) {
       super(itemView);
       webview = itemView.findViewById(R.id.webview);

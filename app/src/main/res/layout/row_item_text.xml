@@ -9,14 +9,17 @@
     android:id="@+id/tv_title_precautions"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
     android:textColor="@color/blue"
-    android:textSize="30sp"
+    android:textSize="20sp"
     android:textStyle="bold" />
   <TextView
     android:id="@+id/tv_precautions"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:contentDescription="@string/desc"
-    android:gravity="left"
+    android:autoLink="web|phone"
+    android:gravity="start"
+    android:textSize="12sp"
     android:textColor="@android:color/black" />
 </LinearLayout>

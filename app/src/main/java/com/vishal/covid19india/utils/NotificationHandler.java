@@ -57,6 +57,7 @@ public class NotificationHandler {
     NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context,
         channelId)
         .setSmallIcon(R.drawable.ic_covid19)
+        .setColor(context.getResources().getColor(R.color.blue))
         .setContentTitle(title)
         .setAutoCancel(true)
         .setStyle(new NotificationCompat.BigTextStyle().bigText(messageBody))
@@ -131,6 +132,7 @@ public class NotificationHandler {
 
     notificationBuilder.setSmallIcon(R.drawable.ic_covid19);
     notificationBuilder.setContentTitle(title);
+    notificationBuilder.setColor(context.getResources().getColor(R.color.blue));
     notificationBuilder.setAutoCancel(true);
     notificationBuilder.setContentText(message);
     notificationBuilder.setSound(defaultSoundUri);
@@ -199,6 +201,7 @@ public class NotificationHandler {
       notificationBuilder.setContentIntent(pendingIntent);
       notificationBuilder.setContentTitle(title);
       notificationBuilder.setSmallIcon(R.drawable.ic_covid19);
+      notificationBuilder.setColor(context.getResources().getColor(R.color.blue));
       notificationBuilder.setLargeIcon(result);
       notificationBuilder.setSound(defaultSoundUri);
       notificationBuilder.setAutoCancel(true);

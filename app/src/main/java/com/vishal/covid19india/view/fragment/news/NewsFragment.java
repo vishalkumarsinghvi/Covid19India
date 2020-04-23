@@ -13,11 +13,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.NewsAdapter;
-import com.vishal.covid19india.model.Covid19.RawData.RawData;
+import com.vishal.covid19india.model.covid19.rawData.RawData;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +53,7 @@ public class NewsFragment extends Fragment implements OnRefreshListener {
         RecyclerView.VERTICAL, false));
     rvNewsData.setHasFixedSize(true);
     rvNewsData.addItemDecoration(
-        new DividerItemDecoration(Objects.requireNonNull(getActivity()),
+        new DividerItemDecoration(requireActivity(),
             DividerItemDecoration.VERTICAL));
     rvNewsData.setAdapter(newsAdapter);
   }

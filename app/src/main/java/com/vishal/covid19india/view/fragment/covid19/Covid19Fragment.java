@@ -14,13 +14,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.chip.Chip;
 import com.vishal.covid19india.R;
 import com.vishal.covid19india.adapters.Covid19ViewPagerAdapter;
-import com.vishal.covid19india.model.Covid19.Factoids.FactoidsModel;
+import com.vishal.covid19india.model.covid19.factoids.FactoidsModel;
 import com.vishal.covid19india.view.fragment.covid19.child.DataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.RawDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.StateWiseFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.TestedDataFragment;
 import com.vishal.covid19india.view.fragment.covid19.child.UpdateTimelineFragment;
-import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +50,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     Chip chipData = root.findViewById(R.id.chip_data);
     viewPager = root.findViewById(R.id.view_pager);
     Covid19ViewPagerAdapter covid19Adapter = new Covid19ViewPagerAdapter(
-        Objects.requireNonNull(getActivity()).getSupportFragmentManager(), getLifecycle());
+        requireActivity().getSupportFragmentManager(), getLifecycle());
     covid19Adapter.addFragment(new StateWiseFragment());
     covid19Adapter.addFragment(new UpdateTimelineFragment());
     covid19Adapter.addFragment(new UpdateTimelineFragment());

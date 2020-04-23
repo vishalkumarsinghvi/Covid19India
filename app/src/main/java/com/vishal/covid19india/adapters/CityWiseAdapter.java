@@ -8,17 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.vishal.covid19india.R;
-import com.vishal.covid19india.model.Covid19.City.DistrictData;
+import com.vishal.covid19india.model.covid19.city.DistrictData;
 import java.util.ArrayList;
 
 public class CityWiseAdapter extends RecyclerView.Adapter<CityWiseAdapter.ViewHolder> {
 
   private ArrayList<DistrictData> cityModelArrayList;
-  private Context context;
 
   CityWiseAdapter(Context context,
       ArrayList<DistrictData> cityModelArrayList) {
-    this.context = context;
     this.cityModelArrayList = cityModelArrayList;
   }
 
