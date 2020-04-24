@@ -84,14 +84,14 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:orientation="horizontal"
-    android:weightSum="6">
+    android:weightSum="5.5">
 
     <TextView
       android:id="@+id/tv_state"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_margin="1dp"
-      android:layout_weight="2"
+      android:layout_weight="1.5"
       android:background="@drawable/round_text"
       android:gravity="center"
       android:text="@string/state"

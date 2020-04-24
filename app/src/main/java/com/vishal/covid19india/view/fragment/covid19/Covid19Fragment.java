@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
 
   private ViewPager2 viewPager;
   private TextView tvHeader;
+  private HorizontalScrollView horizontalScrollView;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     tvHeader.setEllipsize(TruncateAt.MARQUEE);
     tvHeader.setSelected(true);
     tvHeader.setSingleLine(true);
+    horizontalScrollView = root.findViewById(R.id.horizontalScrollView);
     Chip chipStateWiseData = root.findViewById(R.id.chip_state_wise_data);
     Chip chipUpdateTimeline = root.findViewById(R.id.chip_update_timeline_data);
     Chip chipPrecautions = root.findViewById(R.id.chip_precautions_data);
@@ -105,9 +108,13 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
         break;
       case R.id.chip_precautions_data:
         position = 2;
+        horizontalScrollView.postDelayed(
+            () -> horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT), 0);
         break;
       case R.id.chip_test_data:
         position = 3;
+        horizontalScrollView.postDelayed(
+            () -> horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 0);
         break;
       case R.id.chip_raw_data:
         position = 4;
