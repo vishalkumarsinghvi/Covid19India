@@ -44,11 +44,6 @@ public class Covid19IndiaApplication extends Application {
           Log.d(TAG, token);
         });
     FirebaseMessaging.getInstance().subscribeToTopic(covid19india);
-    AppController appController = new AppController(getApplicationContext());
-    if (!appController.getFirstTimeAppOpen()) {
-      appController.firstTimeAppOpen();
-      appController.subScribeToChannel();
-    }
   }
 
   @Override

@@ -50,7 +50,7 @@ public class AppController {
 //    subScribeToChannel();
   }
 
-  void firstTimeAppOpen() {
+  public void firstTimeAppOpen() {
     SharedPreferences sharedPreferences = context.getApplicationContext()
         .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -58,7 +58,7 @@ public class AppController {
     editor.commit();
   }
 
-  boolean getFirstTimeAppOpen() {
+  public boolean getFirstTimeAppOpen() {
     SharedPreferences sharedPreferences = context.getApplicationContext()
         .getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
     return sharedPreferences.getBoolean(FIRST_TIME_APP_OPEN, false);

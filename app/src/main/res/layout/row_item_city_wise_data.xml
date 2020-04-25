@@ -15,7 +15,7 @@
     android:layout_weight="1.5"
     android:background="@android:color/white"
     android:gravity="center_vertical|start"
-    android:paddingLeft="20dp"
+    android:paddingStart="20dp"
     android:text="@string/blank"
     android:textColor="@android:color/black"
     android:textSize="12sp"

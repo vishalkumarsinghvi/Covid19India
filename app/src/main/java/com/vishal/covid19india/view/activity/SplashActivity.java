@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
 import com.vishal.covid19india.R;
+import com.vishal.covid19india.utils.AppController;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class SplashActivity extends AppCompatActivity {
@@ -32,8 +32,6 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void setData() {
-    Glide.with(this)
-        .load(R.drawable.logo_transparent).into(ivLogo);
     new Thread(() -> {
       setProgressStatus();
       openMainActivity();
@@ -45,7 +43,12 @@ public class SplashActivity extends AppCompatActivity {
       progressStatus++;
       handler.post(() -> progressBar.setProgress(progressStatus));
       try {
-        Thread.sleep(20);
+        AppController appController = new AppController(getApplicationContext());
+        if (!appController.getFirstTimeAppOpen()) {
+          appController.firstTimeAppOpen();
+          appController.subScribeToChannel();
+        }
+        Thread.sleep(10);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
