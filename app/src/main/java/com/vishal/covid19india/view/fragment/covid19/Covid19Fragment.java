@@ -63,7 +63,7 @@ public class Covid19Fragment extends Fragment implements OnClickListener {
     viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
     viewPager.setUserInputEnabled(false);
     viewPager.setAdapter(covid19Adapter);
-    viewPager.setOffscreenPageLimit(1);
+    viewPager.setOffscreenPageLimit(2);
     chipStateWiseData.setOnClickListener(this);
     chipUpdateTimeline.setOnClickListener(this);
     chipPrecautions.setOnClickListener(this);
